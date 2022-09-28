@@ -12,6 +12,8 @@ p
 	= 'Category: '
 	= @product.category.title
 p
-	= link_to 'Edit product', edit_product_path(@product)
+	= link_to 'Edit product', edit_product_path(@product), class: "text-decoration-none"
 	= ' | '
-	= link_to 'Delete product', product_path(@product), method: :delete
+	= link_to 'Delete product', product_path(@product), method: :delete, class: "text-decoration-none"
+
+= link_to 'Back', root_path, class: "text-decoration-none"
