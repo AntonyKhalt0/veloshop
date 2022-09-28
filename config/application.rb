@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -10,7 +12,7 @@ module Veloshop
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-    
+
     config.autoload_paths += [config.root.join('app')]
 
     config.action_cable.disable_request_forgery_protection = false

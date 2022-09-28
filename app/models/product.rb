@@ -1,5 +1,7 @@
-class Product < ApplicationRecord
-	belongs_to :category
+# frozen_string_literal: true
 
-	validates :article, :description, :price, presence: true
+class Product < ApplicationRecord
+  belongs_to :category
+
+  validates :article, :description, :price, presence: true
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ProductsController, type: :controller do
@@ -38,7 +40,10 @@ RSpec.describe ProductsController, type: :controller do
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'save a new product in the database' do
-        expect { post :create, params: { product: attributes_for(:product), category_id: category.id } }.to change(Product, :count).by(1)
+        expect do
+          post :create,
+               params: { product: attributes_for(:product), category_id: category.id }
+        end.to change(Product, :count).by(1)
       end
 
       it 'render show view' do
@@ -49,7 +54,10 @@ RSpec.describe ProductsController, type: :controller do
 
     context 'with invalid attributes' do
       it 'save a new product in the database' do
-        expect { post :create, params: { product: attributes_for(:product, :invalid), category_id: category.id } }.to_not change(Product, :count)
+        expect do
+          post :create,
+               params: { product: attributes_for(:product, :invalid), category_id: category.id }
+        end.to_not change(Product, :count)
       end
 
       it 'render new view' do
@@ -63,7 +71,7 @@ RSpec.describe ProductsController, type: :controller do
   describe 'GET #edit' do
     let(:product) { create(:product, category: category) }
 
-    before { get :edit, params: { id: product }  }
+    before { get :edit, params: { id: product } }
 
     it 'render edit view' do
       expect(response).to render_template :edit
@@ -91,7 +99,10 @@ RSpec.describe ProductsController, type: :controller do
 
     context 'with invalid attributes' do
       it 'save a new product in the database' do
-        expect { patch :update, params: { id: product.id, product: { title: nil }, category_id: category.id } }.to_not change(Product, :count)
+        expect do
+          patch :update,
+                params: { id: product.id, product: { title: nil }, category_id: category.id }
+        end.to_not change(Product, :count)
       end
 
       it 'render edit view' do
