@@ -1,0 +1,10 @@
+.product
+	table
+		tr
+			th= 'Article'
+			th= 'Description'
+			th= 'Price'
+		tr
+			= render @products
+
+= link_to 'Add product', new_product_path

@@ -1,0 +1,18 @@
+= form_with model: @product, local: false do |f|
+  p
+    = f.label :title
+    = f.text_field :title
+  p
+    = f.label :article
+    = f.text_field :article
+  p
+    = f.label :description
+    = f.text_area :description
+  p
+    = f.label :price
+    = f.number_field :price
+  p
+    = f.label :category
+    = f.collection_select :category_id, Category.all, :id, :title, prompt: true
+  p
+    = f.submit 'Save'
