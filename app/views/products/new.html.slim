@@ -1,0 +1,22 @@
+div class="container"
+  - if can? :create, @product
+    = form_with model: @product do |f|
+      p
+        = f.label :title
+        = f.text_field :title
+      p
+        = f.label :article
+        = f.text_field :article
+      p
+        = f.label :description
+        = f.text_area :description, size: "40x5"
+      p
+        = f.label :price
+        = f.number_field :price
+      p
+        = f.collection_select :category_id, Category.order(:title), :id, :title
+      p
+        = f.submit "Create"
+
+    p
+      = link_to 'Back', products_path, class: "text-dark text-decoration-none"

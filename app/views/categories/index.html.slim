@@ -1,0 +1,10 @@
+div class="container"
+	- if can? :read, Category
+		.categories
+			table class='table'
+				tr
+					th= 'Title'
+				tb
+					= render @categories
+
+		= link_to 'Add category', new_category_path, class: "text-decoration-none"
