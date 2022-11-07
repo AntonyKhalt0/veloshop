@@ -1,22 +1,20 @@
-= render 'shared/errors', resource: @product
+div class="containter"
+  - if can? :update, @product
+    = form_with model: @product do |f|
+      p
+        = f.label :title
+        = f.text_field :title
+      p
+        = f.label :article
+        = f.text_field :article
+      p
+        = f.label :description
+        = f.text_area :description, size: "40x5"
+      p
+        = f.label :price
+        = f.text_field :price
+      p
+        = f.submit "Edit"
 
-= form_with model: @product, local: false do |f|
-  p
-    = f.label :title
-    = f.text_field :title
-  p
-    = f.label :article
-    = f.text_field :article
-  p
-    = f.label :description
-    = f.text_area :description
-  p
-    = f.label :price
-    = f.number_field :price
-  p
-    = f.label :category
-    = f.collection_select :category_id, Category.all, :id, :title, prompt: true
-  p
-    = f.submit 'Save'
-
-= link_to 'Back', product_path(@product), class: "text-decoration-none"
+    p
+      = link_to 'Back', products_path, class: "text-dark text-decoration-none"

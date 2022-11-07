@@ -1,9 +1,13 @@
-.products
-	table class='table'
-		tr
-			th= 'Title'
-			th= 'Price'
-		tb
-			= render @products
+div class="container"
+  .products
+    table class='table'
+      tr
+        th= 'Title'
+        th= 'Price'
+        th
+      tb
+        div class=".col-md-4"= render @products
 
-= link_to 'Add product', new_product_path, class: "text-decoration-none"
+  - if can? :create, Product
+    = link_to 'Add product', new_product_path, class: "text-decoration-none"
+

@@ -4,4 +4,8 @@ FactoryBot.define do
   factory :category do
     title { 'MyString' }
   end
+
+  trait :invalid_category do
+    title { nil }
+  end
 end

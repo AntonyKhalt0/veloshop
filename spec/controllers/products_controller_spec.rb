@@ -3,7 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe ProductsController, type: :controller do
+  let(:user) { create(:user) }
   let(:category) { create(:category) }
+
+  before { login(user) }
 
   describe 'GET #index' do
     let(:products) { create_list(:product, 3, category: category) }

@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2022_09_28_081724) do
     t.string "last_name", null: false
     t.bigint "phone"
     t.string "address"
+    t.boolean "buyer", default: true
     t.boolean "admin", default: false
     t.boolean "seller", default: false
     t.boolean "director", default: false

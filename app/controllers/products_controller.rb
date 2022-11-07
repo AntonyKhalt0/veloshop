@@ -1,11 +1,18 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_product, only: %i[show new edit update destroy]
+
+  authorize_resource
 
   def index
     @products = Product.all
   end
+
+  def new; end
+
+  def edit; end
 
   def create
     @product = Product.new(product_params)
