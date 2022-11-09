@@ -3,21 +3,21 @@
 require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
-  let(:user) { create(:user) }
+  let(:seller) { create(:user, :seller) }
 
-  before { login(user) }
+  before { login(seller) }
 
   describe 'GET #index' do
     let(:categories) { create_list(:category, 3) }
 
     before { get :index }
 
-    it 'render index view' do
-      expect(response).to render_template :index
-    end
-
     it 'render products array' do
       expect(assigns(:categories)).to match_array(categories)
+    end
+
+    it 'render index view' do
+      expect(response).to render_template :index
     end
   end
 

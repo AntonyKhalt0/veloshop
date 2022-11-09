@@ -11,6 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.boolean :admin, default: false
       t.boolean :seller, default: false
       t.boolean :director, default: false
+      #t.references :shopping_cart, foreign_key: true
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

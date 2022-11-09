@@ -5,4 +5,9 @@ FactoryBot.define do
     first_name { 'User' }
     last_name { 'Userovich' }
   end
+
+  trait :seller do
+    buyer { false }
+    seller { true }
+  end
 end

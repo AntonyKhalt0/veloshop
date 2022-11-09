@@ -1,0 +1,16 @@
+div class="container"
+  - if @shop_cart.products.empty?
+    p Ваша корзина пуста!
+  - else
+    h3= "Ваша корзина:"
+    table class="table"
+      tr
+        th= 'Product'
+        th= 'Price'
+        th=
+      tb
+        - @shop_cart.products.each do |product|
+          tr
+            td= product.title
+            td= product.price
+            td= link_to 'Убрать', delete_product_shopping_cart_path(product), method: :patch, class: "text-danger text-decoration-none"

@@ -8,11 +8,11 @@ class Ability
 
     return unless user.present?
 
-    buyer_abilities(user)
+    buyer_abilities
 
     return unless user.seller?
 
-    seller_abilities(user)
+    seller_abilities
 
     return unless user.director?
 
@@ -27,15 +27,16 @@ class Ability
     can :read, Product
   end
 
-  def buyer_abilities(buyer)
+  def buyer_abilities
     guest_abilities
-    # can :create, [ShoppingCard, Order]
-    # can :update, [ShoppingCard, Order]
-    # can :destroy, [ShoppingCard, Order]
+    can :read, ShoppingCart
+    can :create, [ShoppingCart] #, Order]
+    can :update, [ShoppingCart] #, Order]
+    can :destroy, [ShoppingCart] #, Order]
     # can :create_comment, [Product]
   end
 
-  def seller_abilities(seller)
+  def seller_abilities
     guest_abilities
     can :read, Category
     can :create, [Product, Category]

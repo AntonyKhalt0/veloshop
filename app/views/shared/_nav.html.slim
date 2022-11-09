@@ -9,6 +9,9 @@ nav class="navbar navbar-dark bg-dark"
         = link_to 'Categories', categories_path
         = ' | '
       - if user_signed_in?
+        - if can? :read, ShoppingCart
+          = link_to 'Shopping Cart', shopping_cart_path(current_user.shopping_cart)
+          = ' | '
         = link_to 'Sign out', destroy_user_session_path, method: :delete
       - else
         = link_to 'Sign in', new_user_session_path

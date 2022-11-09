@@ -1,4 +1,5 @@
 tr
   td= link_to product.title, product_path(product), class: "text-dark text-decoration-none"
   td= product.price
-  td= 'Купить'
+  - if can? :read, ShoppingCart
+    td= link_to 'Купить', add_product_shopping_cart_path(product), method: :patch, class: "text-success text-decoration-none"
