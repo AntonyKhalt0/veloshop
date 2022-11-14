@@ -13,4 +13,5 @@ Rails.application.routes.draw do
       patch :delete_product
     end
   end
+  resources :orders
 end

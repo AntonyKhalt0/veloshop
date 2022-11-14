@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_07_141001) do
+ActiveRecord::Schema.define(version: 2022_11_09_140953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,21 @@ ActiveRecord::Schema.define(version: 2022_11_07_141001) do
     t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "payment_type", default: "cash"
+    t.string "status", default: "create"
+    t.float "total_price"
+    t.json "products"
+    t.bigint "buyer_id", null: false
+    t.bigint "seller_id"
+    t.bigint "shopping_cart_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buyer_id"], name: "index_orders_on_buyer_id"
+    t.index ["seller_id"], name: "index_orders_on_seller_id"
+    t.index ["shopping_cart_id"], name: "index_orders_on_shopping_cart_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -72,6 +87,9 @@ ActiveRecord::Schema.define(version: 2022_11_07_141001) do
     t.index ["shopping_cart_id"], name: "index_users_on_shopping_cart_id"
   end
 
+  add_foreign_key "orders", "shopping_carts"
+  add_foreign_key "orders", "users", column: "buyer_id"
+  add_foreign_key "orders", "users", column: "seller_id"
   add_foreign_key "products", "categories"
   add_foreign_key "shopping_carts", "users", column: "buyer_id"
   add_foreign_key "users", "shopping_carts"

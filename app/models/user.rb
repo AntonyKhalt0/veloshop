@@ -5,10 +5,19 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :shopping_cart, optional: true
+  has_many :orders, as: :buyer, dependent: :nullify
 
   validates :first_name, :last_name, presence: true
 
   after_create :add_shop_cart
+
+  def creator?(resource)
+    resource.buyer.id == self.id
+  end
+
+  def performer?(order)
+    order.seller.id == self.id
+  end
 
   private
 

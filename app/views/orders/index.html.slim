@@ -1,0 +1,53 @@
+div class="container"
+  div class="row"
+    div class="col-md-4"
+      h3= 'Новые заказы:'
+      - @created_orders.each do |order|
+        - if current_user.creator?(order) || current_user.seller?
+          div class="card border-primary" style="width: 18rem;"
+            div class="card-header"= "Order number: #{order.id}"
+            div class="card-body"
+              - order.products.each do |product|
+                h5 class="card-title"= product[0]
+              p class="card-text"= "Total price: #{order.total_price}"
+              div class="row"
+                div class="col-sm-4"= button_to order_path(order), method: :get, class: "btn btn-primary" do
+                  = 'Заказ'
+                - if current_user.buyer?
+                  div class="col-sm-4"= button_to "", class: "btn btn-success" do
+                    = 'Оплатить'
+                - if can? :update, order
+                  div class="col-sm-4"= button_to edit_order_path(order), method: :get, class: "btn btn-success" do
+                    = 'Выполнить'
+              - if can? :destroy, order
+                p= button_to order_path(order), method: :delete, class: "btn btn-danger" do
+                  = 'Удалить'
+    div class="col-md-4"
+      h3= "Выполняемые заказы:"
+      - @executable_orders.each do |order|
+        - if current_user.creator?(order) || current_user.performer?(order)
+          div class="card border-danger" style="width: 18rem;"
+            div class="card-header"= "Order number: #{order.id}"
+            div class="card-body"
+              - order.products.each do |product|
+                h5 class="card-title"= product[0]
+              p class="card-text"= "Total price: #{order.total_price}"
+              div class="row"
+                div class="col-sm-4"= button_to order_path(order), method: :get, class: "btn btn-primary" do
+                  = 'Заказ'
+                - if can? :update, order
+                  div class="col-sm-4"= button_to edit_order_path(order), method: :get, class: "btn btn-success" do
+                    = 'Завершить'
+    - if current_user.buyer?
+      div class="col-md-4"
+        h3= 'Старые заказы:'
+        - @completed_orders.each do |order|
+          - if current_user.creator?(order)
+            div class="card border-success" style="width: 18rem;"
+              div class="card-header"= "Order number: #{order.id}"
+              div class="card-body"
+                - order.products.each do |product|
+                  h5 class="card-title"= product[0]
+                p class="card-text"= "Total price: #{order.total_price}"
+                = button_to order_path(order), method: :get, class: "btn btn-primary" do
+                  = 'Заказ'

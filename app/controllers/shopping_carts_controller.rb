@@ -2,9 +2,15 @@ class ShoppingCartsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_shop_cart, only: %i[show add_product delete_product]
 
+  authorize_resource
+
+  def show
+    @order = Order.new
+  end
+
   def add_product
     @shop_cart.products << set_product
-    flash[:success] = 'The product has been successfully added to your cart'
+    #flash[:success] = 'The product has been successfully added to your cart'
   end
 
   def delete_product

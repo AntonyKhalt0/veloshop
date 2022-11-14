@@ -1,0 +1,22 @@
+div class="container"
+  div class="row"
+    div class="col"
+      h3= 'Заказ:'
+      div class="card"
+        div class="card-body"
+          - @order.products.each do |product|
+            h5 class="card-title"= product[0]
+            p class="card-title"= "Article: #{product[1]["article"]}"
+            p class="card-title"= "Description: #{product[1]["description"]}"
+            p class="card-title"= "Price: #{product[1]["price"]}"
+          p class="card-text"= "Total price: #{@order.total_price}"
+          - if @order.seller
+            p class="card-text"= "Seller: #{@order.seller.first_name}"
+
+  - if can? :update, @order
+    = form_with model: @order do |f|
+      p
+        = f.label :status, 'Статус заказа'
+        = f.select :status, ['executable', 'completed']
+      p
+        = f.submit 'Подтвердить', class: 'btn-success'

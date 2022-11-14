@@ -6,43 +6,35 @@ class Ability
   def initialize(user)
     guest_abilities
 
-    return unless user.present?
-
-    buyer_abilities
-
-    return unless user.seller?
-
-    seller_abilities
-
-    return unless user.director?
-
-    director_abilities
-
-    return unless user.admin?
-
-    admin_abilities
+    if user.buyer?
+      buyer_abilities(user)
+    elsif user.seller?
+      seller_abilities(user)
+    elsif user.director?
+      director_abilities
+    elsif user.admin?
+      admin_abilities
+    end
   end
 
   def guest_abilities
     can :read, Product
   end
 
-  def buyer_abilities
+  def buyer_abilities(buyer)
     guest_abilities
-    can :read, ShoppingCart
-    can :create, [ShoppingCart] #, Order]
-    can :update, [ShoppingCart] #, Order]
-    can :destroy, [ShoppingCart] #, Order]
+    can :read, [ShoppingCart, Order]
+    can %i[add_product delete_product], ShoppingCart, { buyer_id: buyer.id }
+    can :create, Order
+    can :destroy, Order, { buyer_id: buyer.id }
     # can :create_comment, [Product]
   end
 
-  def seller_abilities
+  def seller_abilities(seller)
     guest_abilities
-    can :read, Category
-    can :create, [Product, Category]
-    can :update, [Product, Category]
-    can :destroy, [Product, Category]
-    #can :me, Seller, user_id: user.id
+    can :read, [Category, Order]
+    can %i[create update destroy], [Product, Category]
+    can :update, Order
   end
 
   def director_abilities
