@@ -43,6 +43,8 @@ class OrdersController < ApplicationController
 
   def destroy
     @order.destroy
+    current_user.bank_account.amount += @order.total_price if @order.payment_status == true
+    current_user.bank_account.save
     redirect_to orders_path
   end
 
