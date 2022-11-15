@@ -4,16 +4,19 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    guest_abilities
 
-    if user.buyer?
-      buyer_abilities(user)
-    elsif user.seller?
-      seller_abilities(user)
-    elsif user.director?
-      director_abilities
-    elsif user.admin?
-      admin_abilities
+    if user
+      if user.buyer?
+        buyer_abilities(user)
+      elsif user.seller?
+        seller_abilities(user)
+      elsif user.director?
+        director_abilities
+      elsif user.admin?
+        admin_abilities
+      end
+    else
+      guest_abilities
     end
   end
 

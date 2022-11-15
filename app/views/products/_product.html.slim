@@ -1,5 +1,7 @@
 tr
   td= link_to product.title, product_path(product), class: "text-dark text-decoration-none"
   td= product.price
-  - if current_user.buyer?
+  - if current_user && current_user.buyer?
     td= link_to 'Купить', add_product_shopping_cart_path(product), method: :patch, class: "text-success text-decoration-none"
+  - if !current_user
+    td= link_to 'Купить', new_user_session_path, method: :get, class: "text-success text-decoration-none"

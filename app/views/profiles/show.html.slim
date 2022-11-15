@@ -1,0 +1,20 @@
+div class="card"
+  div class="card-header"
+    = "Профиль: #{@profile.first_name} #{@profile.last_name}"
+  div class="card-body"
+    p class="card-text"= "Email: #{@profile.email}"
+    p class="card-text"= "Телефон: #{@profile.phone}"
+    p class="card-text"= "Адрес доставки: #{@profile.address}"
+    p
+      div class="row"
+        div class="col-sm-2 card-text"= "Сумма денег: #{@profile.bank_account.amount} p."
+        div class="col-sm-2"= button_to edit_bank_account_path(@profile.bank_account), method: :get, class: "btn btn-success" do
+          = 'Пополнить'
+    div class="row"
+      - if can? :read, ShoppingCart
+        div class="col-sm-2"= button_to shopping_cart_path(current_user.shopping_cart), method: :get, class: "btn btn-primary" do
+          = 'Корзина покупок'
+      - if can? :read, Order
+        div class="col-sm-2"= button_to orders_path, method: :get, class: "btn btn-primary" do
+          = 'Заказы'
+p= link_to "Назад", root_path

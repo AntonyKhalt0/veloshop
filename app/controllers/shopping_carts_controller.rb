@@ -10,12 +10,14 @@ class ShoppingCartsController < ApplicationController
 
   def add_product
     @shop_cart.products << set_product
-    #flash[:success] = 'The product has been successfully added to your cart'
+    redirect_to @shop_cart
+    flash[:notice] = 'The product has been successfully added to your cart!'
   end
 
   def delete_product
     @shop_cart.products.delete(set_product)
     redirect_to @shop_cart
+    flash[:notice] = 'The product has been successfully deleted to your cart!'
   end
 
   private

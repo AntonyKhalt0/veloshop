@@ -1,13 +1,13 @@
-div class="container"
-  .products
-    table class='table'
-      tr
-        th= 'Product'
-        th= 'Price'
-        th
-      tb
-        div class=".col-md-4"= render @products
+- if can? :create, Product
+  p= link_to 'Add product', new_product_path, class: "text-decoration-none"
 
-  - if can? :create, Product
-    = link_to 'Add product', new_product_path, class: "text-decoration-none"
-
+.products
+  table class='table'
+    tr
+      th= 'Product'
+      th= 'Price'
+      th
+    tb
+      div class=".col-md-4"= render @products
+  div class="digg_pagination"
+    p= will_paginate @products

@@ -1,27 +1,24 @@
-div class="container"
-  h3= "Оформление заказа  :"
-  table class="table"
-    tr
-      th= 'Product'
-      th= 'Price'
-      th=
-    tb
-      - @shop_cart.products.each do |product|
-        tr
-          td= product.title
-          td= product.price
+h3= "Оформление заказа  :"
+table class="table"
+  tr
+    th= 'Product'
+    th= 'Price'
+    th=
+  tb
+    - @shop_cart.products.each do |product|
       tr
-        td
-          h6= "Итого:"
-        td
-          h6= @shop_cart.total_price
-        td=
-  - if can? :create, Order
-      = form_with model: @order do |f|
-        p
-          = f.label :payment_type, 'Тип оплаты '
-          = f.select :payment_type, ['online', 'cash']
-        p
-          = f.submit 'Оформить', class: 'btn-success'
-
-
+        td= product.title
+        td= product.price
+    tr
+      td
+        h6= "Итого:"
+      td
+        h6= @shop_cart.total_price
+      td=
+- if can? :create, Order
+    = form_with model: @order do |f|
+      p
+        = f.label :payment_type, 'Тип оплаты '
+        = f.select :payment_type, ['online', 'cash']
+      p
+        = f.submit 'Оформить', class: 'btn-success'

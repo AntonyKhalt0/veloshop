@@ -14,4 +14,7 @@ Rails.application.routes.draw do
     end
   end
   resources :orders
+  resources :profiles, only: %i[show]
+  resources :bank_accounts, only: %i[edit update]
+  post :payment, to: 'payments#payment'
 end

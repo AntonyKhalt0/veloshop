@@ -5,9 +5,9 @@ class OrdersController < ApplicationController
   authorize_resource
 
   def index
-    @executable_orders = Order.executable
-    @created_orders = Order.created
-    @completed_orders = Order.completed
+    @executable_orders = Order.executable.paginate(page: params[:page], per_page: 1)
+    @created_orders = Order.created.paginate(page: params[:page], per_page: 1)
+    @completed_orders = Order.completed.paginate(page: params[:page], per_page: 1)
   end
 
   def new

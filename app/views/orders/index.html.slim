@@ -1,6 +1,6 @@
-div class="container"
-  div class="row"
-    div class="col-md-4"
+div class="row"
+  div class="col-md-4"
+    div class="created-orders"
       h3= 'Новые заказы:'
       - @created_orders.each do |order|
         - if current_user.creator?(order) || current_user.seller?
@@ -9,12 +9,13 @@ div class="container"
             div class="card-body"
               - order.products.each do |product|
                 h5 class="card-title"= product[0]
+              p class="card-text"= "Статус оплаты: #{order.payment_status}"
               p class="card-text"= "Total price: #{order.total_price}"
               div class="row"
                 div class="col-sm-4"= button_to order_path(order), method: :get, class: "btn btn-primary" do
                   = 'Заказ'
-                - if current_user.buyer?
-                  div class="col-sm-4"= button_to "", class: "btn btn-success" do
+                - if current_user.buyer? && order.payment_type == 'online' && !order.payment_status
+                  div class="col-sm-4"= button_to payment_path, class: "btn btn-success", params: { order_id: order.id } do
                     = 'Оплатить'
                 - if can? :update, order
                   div class="col-sm-4"= button_to edit_order_path(order), method: :get, class: "btn btn-success" do
@@ -22,7 +23,10 @@ div class="container"
               - if can? :destroy, order
                 p= button_to order_path(order), method: :delete, class: "btn btn-danger" do
                   = 'Удалить'
-    div class="col-md-4"
+          div class="digg_pagination"
+            p= will_paginate @created_orders
+  div class="col-md-4"
+    div class="executable-orders"
       h3= "Выполняемые заказы:"
       - @executable_orders.each do |order|
         - if current_user.creator?(order) || current_user.performer?(order)
@@ -31,6 +35,7 @@ div class="container"
             div class="card-body"
               - order.products.each do |product|
                 h5 class="card-title"= product[0]
+              p class="card-text"= "Статус оплаты: #{order.payment_status}"
               p class="card-text"= "Total price: #{order.total_price}"
               div class="row"
                 div class="col-sm-4"= button_to order_path(order), method: :get, class: "btn btn-primary" do
@@ -38,8 +43,11 @@ div class="container"
                 - if can? :update, order
                   div class="col-sm-4"= button_to edit_order_path(order), method: :get, class: "btn btn-success" do
                     = 'Завершить'
-    - if current_user.buyer?
-      div class="col-md-4"
+          div class="digg_pagination"
+            p= will_paginate @executable_orders
+  - if current_user.buyer?
+    div class="col-md-4"
+      div class="completed-orders"
         h3= 'Старые заказы:'
         - @completed_orders.each do |order|
           - if current_user.creator?(order)
@@ -48,6 +56,9 @@ div class="container"
               div class="card-body"
                 - order.products.each do |product|
                   h5 class="card-title"= product[0]
+                p class="card-text"= "Статус оплаты: #{order.payment_status}"
                 p class="card-text"= "Total price: #{order.total_price}"
                 = button_to order_path(order), method: :get, class: "btn btn-primary" do
                   = 'Заказ'
+        div class="digg_pagination"
+          p= will_paginate @completed_orders

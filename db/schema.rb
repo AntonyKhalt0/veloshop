@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_09_140953) do
+ActiveRecord::Schema.define(version: 2022_11_15_101215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bank_accounts", force: :cascade do |t|
+    t.float "amount", default: 0.0
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_bank_accounts_on_user_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "title", null: false
@@ -23,6 +31,7 @@ ActiveRecord::Schema.define(version: 2022_11_09_140953) do
 
   create_table "orders", force: :cascade do |t|
     t.string "payment_type", default: "cash"
+    t.boolean "payment_status", default: false
     t.string "status", default: "create"
     t.float "total_price"
     t.json "products"
@@ -87,6 +96,7 @@ ActiveRecord::Schema.define(version: 2022_11_09_140953) do
     t.index ["shopping_cart_id"], name: "index_users_on_shopping_cart_id"
   end
 
+  add_foreign_key "bank_accounts", "users"
   add_foreign_key "orders", "shopping_carts"
   add_foreign_key "orders", "users", column: "buyer_id"
   add_foreign_key "orders", "users", column: "seller_id"
