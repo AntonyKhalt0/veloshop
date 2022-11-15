@@ -1,12 +1,11 @@
-div class="container"
-	- if can? :create, @category
-		= render 'shared/errors', resource: @category
+- if can? :create, @category
+	= render 'shared/errors', resource: @category
 
-		= form_with model: @category, local: false do |f|
-			p
-				= f.label :title
-				= f.text_field :title
-			p
-				= f.submit 'Create'
+	= form_with model: @category, local: false do |f|
+		p
+			= f.label :title
+			= f.text_field :title
+		p
+			= f.submit 'Create'
 
-	= link_to 'Back', categories_path, class: "text-dark text-decoration-none"
+= link_to 'Back', categories_path, class: "text-dark text-decoration-none"

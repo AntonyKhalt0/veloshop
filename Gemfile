@@ -38,6 +38,7 @@ gem 'jquery-rails'
 gem 'octicons_helper'
 gem 'rubocop-rails', require: false
 gem 'slim-rails'
+gem 'will_paginate'
 
 # authentication
 gem 'devise'

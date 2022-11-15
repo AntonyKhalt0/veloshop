@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :index
   before_action :set_product, only: %i[show new edit update destroy]
 
   authorize_resource
 
   def index
-    @products = Product.all
+    @products = Product.all.paginate(page: params[:page], per_page: 10)
   end
 
   def new; end

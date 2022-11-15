@@ -1,26 +1,25 @@
-div class="container"
-  p
-    = 'Title: '
-    = @product.title
-  p
-    = 'Article: '
-    = @product.article
-  p
-    = 'Description: '
-    = @product.description
-  p
-    = 'Price: '
-    = @product.price
+p
+  = 'Title: '
+  = @product.title
+p
+  = 'Article: '
+  = @product.article
+p
+  = 'Description: '
+  = @product.description
+p
+  = 'Price: '
+  = @product.price
 
-  p
-    Купить | В Избранное
+p
+  Купить | В Избранное
 
-  p
-    - if can? :update, @product
-      = link_to 'Edit', edit_product_path(@product), class: "text-primary text-decoration-none"
-      = " | "
-    - if can? :destroy, @product
-      = link_to 'Delete', product_path(@product), method: :delete, class: "text-danger text-decoration-none"
+p
+  - if can? :update, @product
+    = link_to 'Edit', edit_product_path(@product), class: "text-primary text-decoration-none"
+    = " | "
+  - if can? :destroy, @product
+    = link_to 'Delete', product_path(@product), method: :delete, class: "text-danger text-decoration-none"
 
-  p
-    = link_to 'Back', products_path, class: "text-dark text-decoration-none"
+p
+  = link_to 'Back', products_path, class: "text-dark text-decoration-none"

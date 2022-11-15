@@ -1,0 +1,24 @@
+- if @shop_cart.products.empty?
+  p Ваша корзина пуста!
+- else
+  h3= "Ваша корзина:"
+  table class="table"
+    tr
+      th= 'Product'
+      th= 'Price'
+      th=
+    tb
+      - @shop_cart.products.each do |product|
+        tr
+          td= product.title
+          td= product.price
+          td= link_to 'Убрать', delete_product_shopping_cart_path(product), method: :patch, class: "text-danger text-decoration-none"
+      tr
+        td
+          h6= "Итого:"
+        td
+          h6= @shop_cart.total_price
+        td=
+  - if can? :create, Order
+      = link_to 'Оформить', new_order_path
+

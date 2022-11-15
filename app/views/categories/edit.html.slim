@@ -1,12 +1,11 @@
-div class="container"
-  - if can? :update, @category
-    = render 'shared/errors', resource: @category
+- if can? :update, @category
+  = render 'shared/errors', resource: @category
 
-    = form_with model: @category, local: false do |f|
-      p
-        = f.label :title
-        = f.text_field :title
-      p
-        = f.submit 'Save'
+  = form_with model: @category, local: false do |f|
+    p
+      = f.label :title
+      = f.text_field :title
+    p
+      = f.submit 'Save'
 
-  = link_to 'Back', category_path(@category), class: "text-decoration-none"
+= link_to 'Back', category_path(@category), class: "text-decoration-none"

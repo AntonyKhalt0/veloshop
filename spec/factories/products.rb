@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :product do
     title { 'Stels' }
-    article { 12_345 }
+    article { 12345 }
     description { 'velosiped' }
     price { 12.5 }
   end

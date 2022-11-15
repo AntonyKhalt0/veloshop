@@ -10,15 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_28_081724) do
+ActiveRecord::Schema.define(version: 2022_11_15_101215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bank_accounts", force: :cascade do |t|
+    t.float "amount", default: 0.0
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_bank_accounts_on_user_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "payment_type", default: "cash"
+    t.boolean "payment_status", default: false
+    t.string "status", default: "create"
+    t.float "total_price"
+    t.json "products"
+    t.bigint "buyer_id", null: false
+    t.bigint "seller_id"
+    t.bigint "shopping_cart_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buyer_id"], name: "index_orders_on_buyer_id"
+    t.index ["seller_id"], name: "index_orders_on_seller_id"
+    t.index ["shopping_cart_id"], name: "index_orders_on_shopping_cart_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -30,6 +54,20 @@ ActiveRecord::Schema.define(version: 2022_09_28_081724) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_products_on_category_id"
+  end
+
+  create_table "products_shopping_carts", force: :cascade do |t|
+    t.bigint "shopping_cart_id"
+    t.bigint "product_id"
+    t.index ["product_id"], name: "index_products_shopping_carts_on_product_id"
+    t.index ["shopping_cart_id"], name: "index_products_shopping_carts_on_shopping_cart_id"
+  end
+
+  create_table "shopping_carts", force: :cascade do |t|
+    t.bigint "buyer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buyer_id"], name: "index_shopping_carts_on_buyer_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,9 +90,17 @@ ActiveRecord::Schema.define(version: 2022_09_28_081724) do
     t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "shopping_cart_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["shopping_cart_id"], name: "index_users_on_shopping_cart_id"
   end
 
+  add_foreign_key "bank_accounts", "users"
+  add_foreign_key "orders", "shopping_carts"
+  add_foreign_key "orders", "users", column: "buyer_id"
+  add_foreign_key "orders", "users", column: "seller_id"
   add_foreign_key "products", "categories"
+  add_foreign_key "shopping_carts", "users", column: "buyer_id"
+  add_foreign_key "users", "shopping_carts"
 end

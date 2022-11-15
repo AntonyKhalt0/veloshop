@@ -1,9 +1,8 @@
-div class="container"
-	- if can? :read, @category
-		h1= @category.title
-		p
-			= link_to 'Edit category', edit_category_path(@category), class: "text-decoration-none"
-			= ' | '
-			= link_to 'Delete category', category_path(@category), method: :delete, class: "text-decoration-none"
+- if can? :read, @category
+	h1= @category.title
+	p
+		= link_to 'Edit category', edit_category_path(@category), class: "text-decoration-none"
+		= ' | '
+		= link_to 'Delete category', category_path(@category), method: :delete, class: "text-decoration-none"
 
-		= link_to 'Back', categories_path, class: "text-decoration-none"
+	= link_to 'Back', categories_path, class: "text-decoration-none"
