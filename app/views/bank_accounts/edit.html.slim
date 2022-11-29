@@ -1,12 +1,16 @@
-= form_with model: @bank_account do |f|
-  p
-    = f.label :card_number
-    = f.text_field :card_number
-  p
-    = f.label :card_date
-    = f.date_field :card_date
-  p
-    = f.label :amount
-    = f.number_field :amount
-  p
-    = f.submit 'Пополнить'
+div class="card bg-transparent"
+  div class="card-body"
+    h5 class="card-title"= "Пополнить:"
+    div class="card-text"
+      = form_with model: @bank_account do |f|
+        p
+          = f.label :card_number
+          = f.text_field :card_number
+        p
+          = f.label :card_date
+          = f.date_field :card_date
+        p
+          = f.label :amount
+          = f.number_field :amount
+        p
+          = f.submit 'Пополнить'

@@ -4,7 +4,7 @@ div class="row"
       h3= 'Новые заказы:'
       - @created_orders.each do |order|
         - if current_user.creator?(order) || current_user.seller?
-          div class="card border-primary" style="width: 18rem;"
+          div class="card border-primary bg-transparent" style="width: 18rem;"
             div class="card-header"= "Order number: #{order.id}"
             div class="card-body"
               - order.products.each do |product|
@@ -18,7 +18,7 @@ div class="row"
                   div class="col-sm-4"= button_to payment_path, class: "btn btn-success", params: { order_id: order.id } do
                     = 'Оплатить'
                 - if can? :update, order
-                  div class="col-sm-4"= button_to edit_order_path(order), method: :get, class: "btn btn-success" do
+                  div class="col-sm-4"= button_to edit_seller_order_path(order), method: :get, class: "btn btn-success" do
                     = 'Выполнить'
               - if can? :destroy, order
                 p= button_to order_path(order), method: :delete, class: "btn btn-danger" do
@@ -30,7 +30,7 @@ div class="row"
       h3= "Выполняемые заказы:"
       - @executable_orders.each do |order|
         - if current_user.creator?(order) || current_user.performer?(order)
-          div class="card border-danger" style="width: 18rem;"
+          div class="card border-danger bg-transparent" style="width: 18rem;"
             div class="card-header"= "Order number: #{order.id}"
             div class="card-body"
               - order.products.each do |product|
@@ -41,7 +41,7 @@ div class="row"
                 div class="col-sm-4"= button_to order_path(order), method: :get, class: "btn btn-primary" do
                   = 'Заказ'
                 - if can? :update, order
-                  div class="col-sm-4"= button_to edit_order_path(order), method: :get, class: "btn btn-success" do
+                  div class="col-sm-4"= button_to edit_seller_order_path(order), method: :get, class: "btn btn-success" do
                     = 'Завершить'
           div class="digg_pagination"
             p= will_paginate @executable_orders
@@ -51,7 +51,7 @@ div class="row"
         h3= 'Старые заказы:'
         - @completed_orders.each do |order|
           - if current_user.creator?(order)
-            div class="card border-success" style="width: 18rem;"
+            div class="card border-success bg-transparent" style="width: 18rem;"
               div class="card-header"= "Order number: #{order.id}"
               div class="card-body"
                 - order.products.each do |product|

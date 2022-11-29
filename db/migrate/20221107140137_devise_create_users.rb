@@ -7,10 +7,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :last_name, null: false
       t.bigint :phone
       t.string :address
-      t.boolean :buyer, default: true
-      t.boolean :admin, default: false
-      t.boolean :seller, default: false
-      t.boolean :director, default: false
+      t.integer :salary, default: 0
+      t.string :type, default: "Buyer", null: false
       #t.references :shopping_cart, foreign_key: true
 
       ## Database authenticatable

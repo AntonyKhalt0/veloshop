@@ -18,7 +18,7 @@ class PaymentsController < ApplicationController
   private
 
   def bank_account
-    @bank_account = BankAccount.find_by(user_id: current_user.id)
+    @bank_account = BankAccount.find_by(buyer_id: current_user.id)
   end
 
   def order

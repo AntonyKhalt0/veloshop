@@ -5,16 +5,29 @@ Rails.application.routes.draw do
 
   root 'products#index'
 
-  resources :products
-  resources :categories
+  namespace :seller do
+    resources :orders, only: %i[edit update], shallow: true
+  end
+
+  namespace :buyer do
+    resources :orders, only: %i[new create destroy], shallow: true
+  end
+
+  resources :orders, only: %i[index show]
+
   resources :shopping_carts, only: :show do
     member do
       patch :add_product
       patch :delete_product
     end
   end
-  resources :orders
-  resources :profiles, only: %i[show]
+
   resources :bank_accounts, only: %i[edit update]
+  resources :profiles, only: %i[show]
+  resources :products
+  resources :categories
+  resources :users, only: %i[index show edit destroy] do
+    patch :update_salary, on: :member
+  end
   post :payment, to: 'payments#payment'
 end

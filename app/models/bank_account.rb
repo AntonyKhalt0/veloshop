@@ -1,5 +1,5 @@
 class BankAccount < ApplicationRecord
-  belongs_to :user
+  belongs_to :buyer
 
   validates :amount, presence: true
 end

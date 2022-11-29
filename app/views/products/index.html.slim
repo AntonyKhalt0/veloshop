@@ -1,13 +1,10 @@
 - if can? :create, Product
   p= link_to 'Add product', new_product_path, class: "text-decoration-none"
 
+h3= "Products"
 .products
   table class='table'
-    tr
-      th= 'Product'
-      th= 'Price'
-      th
     tb
-      div class=".col-md-4"= render @products
-  div class="digg_pagination"
+      = render @products
+  div class="digg_pagination bg-transparent"
     p= will_paginate @products

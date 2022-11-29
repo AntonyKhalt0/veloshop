@@ -11,7 +11,7 @@ class Ability
       elsif user.seller?
         seller_abilities(user)
       elsif user.director?
-        director_abilities
+        director_abilities(user)
       elsif user.admin?
         admin_abilities
       end
@@ -30,7 +30,6 @@ class Ability
     can %i[add_product delete_product], ShoppingCart, { buyer_id: buyer.id }
     can :create, Order
     can :destroy, Order, { buyer_id: buyer.id }
-    # can :create_comment, [Product]
   end
 
   def seller_abilities(seller)
@@ -40,8 +39,9 @@ class Ability
     can :update, Order
   end
 
-  def director_abilities
-    seller_abilities
+  def director_abilities(user)
+    seller_abilities(user)
+    can %i[update_salary destroy], User
   end
 
   def admin_abilities

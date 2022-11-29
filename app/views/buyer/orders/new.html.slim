@@ -16,7 +16,7 @@ table class="table"
         h6= @shop_cart.total_price
       td=
 - if can? :create, Order
-    = form_with model: @order do |f|
+    = form_with model: [:buyer, @order] do |f|
       p
         = f.label :payment_type, 'Тип оплаты '
         = f.select :payment_type, ['online', 'cash']

@@ -7,7 +7,11 @@ class ProductsController < ApplicationController
   authorize_resource
 
   def index
-    @products = Product.all.paginate(page: params[:page], per_page: 10)
+    @products = Product.with_attached_images.all.paginate(page: params[:page], per_page: 3)
+  end
+
+  def show
+    @images = @product.images.paginate(page: params[:page], per_page: 1)
   end
 
   def new; end
@@ -40,10 +44,10 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:title, :article, :description, :price, :category_id)
+    params.require(:product).permit(:title, :article, :description, :price, :category_id, images: [])
   end
 
   def set_product
-    @product = params[:id] ? Product.find(params[:id]) : Product.new
+    @product = params[:id] ? Product.with_attached_images.find(params[:id]) : Product.new
   end
 end
