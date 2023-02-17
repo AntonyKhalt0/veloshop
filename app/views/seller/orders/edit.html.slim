@@ -1,21 +1,21 @@
 div class="row"
   div class="col"
-    h3= 'Заказ:'
+    h3= t('.order')
     div class="card bg-transparent"
       div class="card-body"
         - @order.products.each do |product|
           h5 class="card-title"= product[0]
-          p class="card-title"= "Article: #{product[1]["article"]}"
-          p class="card-title"= "Description: #{product[1]["description"]}"
-          p class="card-title"= "Price: #{product[1]["price"]}"
-        p class="card-text"= "Total price: #{@order.total_price}"
+          p class="card-title"= t('.article', article: product[1]["article"])
+          p class="card-title"= t('.description', description: product[1]["description"])
+          p class="card-title"= t('.price', description: product[1]["price"])
+        p class="card-text"= t('.total_price', total_price: @order.total_price)
         - if @order.seller
-          p class="card-text"= "Seller: #{@order.seller.first_name}"
+          p class="card-text"= t('.seller', seller: @order.seller.first_name)
 
 - if can? :update, @order
   = form_with model: [:seller, @order] do |f|
     p
-      = f.label :status, 'Статус заказа'
-      = f.select :status, ['executable', 'completed']
+      = f.label :status, t('.order_status')
+      = f.select :status, [t('.exec'), t('.completed')]
     p
-      = f.submit 'Подтвердить', class: 'btn-success'
+      = f.submit t('.confirm'), class: 'btn-success'

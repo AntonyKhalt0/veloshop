@@ -1,16 +1,16 @@
 div class="card bg-transparent"
   div class="card-body"
-    h5 class="card-title"= "Пополнить:"
+    h5 class="card-title"= t('.replenish')
     div class="card-text"
       = form_with model: @bank_account do |f|
         p
-          = f.label :card_number
+          = f.label :card_number, t('.card_number')
           = f.text_field :card_number
         p
-          = f.label :card_date
+          = f.label :card_date, t('.card_date')
           = f.date_field :card_date
         p
-          = f.label :amount
+          = f.label :amount, t('.amount')
           = f.number_field :amount
         p
-          = f.submit 'Пополнить'
+          = f.submit t('.replenish')

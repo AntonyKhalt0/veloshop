@@ -13,6 +13,11 @@ module Veloshop
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
+    config.time_zone = 'Moscow'
+
+    config.i18n.available_locales = %i[en ru]
+    config.i18n.default_locale = :ru
+
     config.autoload_paths += [config.root.join('app')]
 
     config.action_cable.disable_request_forgery_protection = false

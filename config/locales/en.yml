@@ -1,33 +1,215 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  bank_accounts:
+    edit:
+      card_number: "Card number"
+      card_date: "Card date"
+      amount: "Amount"
+      replenish: "Replenish"
+  buyer:
+    orders:
+      new:
+        making: "Making an order:"
+        product: "Product"
+        price: "Price"
+        total: "Total:"
+        type: "Payment type"
+        online: "Online"
+        cash: "Cash"
+        arrange: "Arrange"
+  categories:
+    edit:
+      title: "Title"
+      save: "Save"
+      back: "Back"
+    index:
+      title: "Title"
+      add_category: "Add category"
+    new:
+      title: "Title"
+      create: "Create"
+      back: "Back"
+    show:
+      edit: "Edit category"
+      delete: "Delete category"
+      back: "Back"
+  orders:
+    index:
+      new_orders: "New orders:"
+      order_number: "Order number: %{id}"
+      payment_status: "Payment status: %{status}"
+      total_price: "Total price: %{price}"
+      order: "Order"
+      pay: "To pay"
+      execute: "Execute"
+      delete: "Delete"
+      executable_orders: "Executable orders:"
+      complete: "Complete"
+      comlpeted_orders: "Completed orders"
+    show:
+      order: "Order:"
+      seller: "Seller:"
+      article: "Article: %{article}"
+      description: "Description: %{description}"
+      price: "Price: %{price}"
+      payment_status: "Payment status: %{status}"
+      total_price: "Total price: %{price}"
+      back: "Back"
+  products:
+    product:
+      empty_image: "Empty image"
+      price: "Price: %{price}"
+      buy: "Buy"
+    edit:
+      title: "Title"
+      article: "Article"
+      description: "Description"
+      price: "Price"
+      edit: "Edit"
+      back: "Back"
+    index:
+      add_product: "Add product"
+      products: "Products"
+    new:
+      title: "Title"
+      article: "Article"
+      description: "Description"
+      price: "Price"
+      images: "Images"
+      create: "Create"
+      back: "Back"
+    show:
+      empty_image: "Empty image"
+      article: "Article: %{article}"
+      description: "Description: %{description}"
+      price: "Price: %{price}"
+      buy: "Buy"
+      edit: "Edit"
+      delete: "Delete"
+      back: "Back"
+  profiles:
+    show:
+      profile: "Profile: %{first_name} %{last_name}"
+      email: "Email: %{email}"
+      phone: "Phone: %{phone}"
+      address: "Delivery address: %{address}"
+      amount: "Amount %{amount} rub."
+      replenish: "Replenish"
+      salary: "Salary: %{salary}"
+      shopping_cart: "Shopping carts"
+      orders: "Orders"
+      back: "Back"
+  seller:
+    orders:
+      edit:
+        order: "Order:"
+        article: "Article: %{article}"
+        description: "Description: %{description}"
+        price: "Price: %{price}"
+        total_price: "Total price: %{total_price}"
+        seller: "Seller: %{seller}"
+        order_status: "Order status"
+        exec: "executable"
+        completed: "completed"
+        confirm: "Confirm"
+  shared:
+    footer:
+      author: "Author: Antony Khalturin. "
+      shop: "Bicycle supplies store"
+    nav:
+      main: "Main"
+      categories: "Categories"
+      users: "Users"
+      profile: "Profile"
+      sign_out: "Sign out"
+      sign_in: "Sign in"
+      sign_up: "Sign up"
+  shopping_carts:
+    show:
+      cart_empty: "Your shopping cart is empty!"
+      your_cart: "Your shopping cart:"
+      product: "Product"
+      price: "Price"
+      delete: "Delete"
+      total: "Total:"
+      arrange: "Arrange"
+  users:
+    index:
+      sellers: "Sellers"
+      seller_id: "Seller id: %{id}"
+      buyers: "Buyers"
+      buyer_id: "Buyer id: %{id}"
+    show:
+      seller: "Seller: %{first_name} %{last_name}"
+      seller_id: "Seller id: %{id}"
+      salary: "Salary"
+      save: "Save"
+      dismiss: "Dismiss"
+      buyer: "Buyer: %{first_name} %{last_name}"
+      email: "Email: %{email}"
+      phone: "Phone: %{phone}"
+      delivery_address: "Delivery address: %{address}"
+      back: "Back"
+  devise:
+    confirmations:
+      new:
+        resend: "Resend confirmation instructions"
+        email: "Email"
+    passwords:
+      edit:
+        change: "Change your password"
+        new: "New password"
+        char_min: "characters minimum"
+        confirm: "Confirm new password"
+      new:
+        forgot: "Forgot your password?"
+        email: "Email"
+        send: "Send me reset password instructions"
+    registrations:
+      new:
+        email: "Email"
+        first_name: "First name"
+        last_name: "Last name"
+        phone: "Phone"
+        address: "Address"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        characters_minimum: "characters minimum"
+        sign_up: "Sign up"
+      edit:
+        edit: "Edit"
+        email: "Email"
+        first_name: "First name"
+        last_name: "Last name"
+        phone: "Phone"
+        address: "Address"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        currently_waiting: "Currently waiting confirmation for: "
+        leave_blank: "(leave blank if you don't want to change it) "
+        current_password: "Current password"
+        confirm_current_password: "we need your current password to confirm your changes"
+        submit: "Update"
+        cancel: "Cancel my account"
+        cancel_account: "Cancel my account"
+        sure: "Are you sure?"
+        back: "Back"
+    sessions:
+      new:
+        login: "Log in"
+        email: "Email"
+        enter_email: "Enter email"
+        password: "Password"
+        remember_me: "Remember me"
+        enter: "Enter"
+    shared:
+      links:
+        login: "Log in"
+        sign_up: "Sign up"
+        forgot: "Forgot your password?"
+        confirm_email: "Didn't receive confirmation instructions?"
+        unlock_email: "Didn't receive unlock instructions?"
+        omniauthable: "Sign in with %{omni}"
+    unlocks:
+      new:
+        resend: "Resend unlock instructions"
+        email: "Email"

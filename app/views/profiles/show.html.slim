@@ -1,23 +1,23 @@
 div class="card bg-transparent"
   div class="card-header"
-    = "Профиль: #{@profile.first_name} #{@profile.last_name}"
+    = t('.profile', first_name: @profile.first_name, last_name: @profile.last_name)
   div class="card-body"
-    p class="card-text"= "Email: #{@profile.email}"
-    p class="card-text"= "Телефон: #{@profile.phone}"
-    p class="card-text"= "Адрес: #{@profile.address}"
+    p class="card-text"= t('.email', email: @profile.email )
+    p class="card-text"= t('.phone', phone: @profile.phone)
+    p class="card-text"= t('.address', address: @profile.address)
     p
       div class="row"
         - if @profile.buyer?
-          div class="col-sm-2 card-text"= "Сумма денег: #{@profile.bank_account.amount} p."
+          div class="col-sm-2 card-text"= t('.amount', amount: @profile.bank_account.amount)
           div class="col-sm-2"= button_to edit_bank_account_path(@profile.bank_account), method: :get, class: "btn btn-success" do
-            = 'Пополнить'
+            = t('.replenish')
         - if @profile.seller?
-          div class="col-sm-2 card-text"= "Зарплата: #{@profile.salary} p."
+          div class="col-sm-2 card-text"= t('.salary', salary: @profile.salary)
     div class="row"
       - if can? :read, ShoppingCart
         div class="col-sm-2"= button_to shopping_cart_path(current_user.shopping_cart), method: :get, class: "btn btn-primary" do
-          = 'Корзина покупок'
+          = t('.shopping_cart')
       - if can? :read, Order
         div class="col-sm-2"= button_to orders_path, method: :get, class: "btn btn-primary" do
-          = 'Заказы'
-p= link_to "Назад", root_path
+          = t('.orders')
+p= link_to t('.back'), root_path

@@ -1,0 +1,216 @@
+ru:
+  bank_accounts:
+    edit:
+      card_number: "Номер карты"
+      card_date: "Срок действия"
+      amount: "Сумма пополнения"
+      replenish: "Пополнить"
+  buyer:
+    orders:
+      new:
+        making: "Оформить заказ:"
+        product: "Товар"
+        price: "Цена"
+        total: "Итого:"
+        type: "Тип оплаты"
+        online: "Онлайн"
+        cash: "Наличными"
+        arrange: "Оформить"
+  categories:
+    edit:
+      title: "Название категории"
+      save: "Сохранить"
+      back: "Назад"
+    index:
+      title: "Название категории"
+      add_category: "Добавить категорию"
+    new:
+      title: "Название категории"
+      create: "Создать"
+      back: "Назад"
+    show:
+      edit: "Редактировать"
+      delete: "Удалить"
+      back: "Назад"
+  orders:
+    index:
+      new_orders: "Новые заказы:"
+      order_number: "Номер заказа: %{id}"
+      payment_status: "Статус оплаты: %{status}"
+      total_price: "Сумма заказа: %{price}"
+      order: "Заказ"
+      pay: "Оплатить"
+      execute: "Выполнить"
+      delete: "Удалить"
+      executable_orders: "Выполняемые заказы:"
+      complete: "Завершить"
+      comlpeted_orders: "Завершенные заказы:"
+    show:
+      order: "Заказ:"
+      seller: "Продавец:"
+      article: "Артикул: %{article}"
+      description: "Описание: %{description}"
+      price: "Стоимость: %{price}"
+      payment_status: "Статус оплаты: %{status}"
+      total_price: "Сумма заказа: %{price}"
+      back: "Назад"
+  products:
+    product:
+      empty_image: "Нет изображения"
+      price: "Цена: %{price}"
+      buy: "Купить"
+    edit:
+      title: "Название"
+      article: "Артикул"
+      description: "Описание"
+      price: "Цена"
+      edit: "Редактировать"
+      back: "Назад"
+    index:
+      add_product: "Добавить товар"
+      products: "Товары"
+    new:
+      title: "Название"
+      article: "Артикул"
+      description: "Описание"
+      price: "Цена"
+      images: "Изображения"
+      create: "Создать"
+      back: "Назад"
+    show:
+      empty_image: "Нет изображения"
+      article: "Артикул: %{article}"
+      description: "Описание: %{description}"
+      price: "Цена: %{price}"
+      buy: "Купить"
+      edit: "Редактировать"
+      delete: "Удалить"
+      back: "Назад"
+  profiles:
+    show:
+      profile: "Профиль: %{first_name} %{last_name}"
+      email: "Email: %{email}"
+      phone: "Телефон: %{phone}"
+      address: "Адрес доставки: %{address}"
+      amount: "Сумма на счёте: %{amount} руб."
+      replenish: "Пополнить счёт"
+      salary: "Заработная плата: %{salary}"
+      shopping_cart: "Корзина покупок"
+      orders: "Заказы"
+      back: "Назад"
+  seller:
+    orders:
+      edit:
+        order: "Заказ:"
+        article: "Артикул: %{article}"
+        description: "Описание: %{description}"
+        price: "Стоимость: %{price}"
+        total_price: "Сумма заказа: %{total_price}"
+        seller: "Продавец: %{seller}"
+        order_status: "Статус заказа"
+        exec: "executable"
+        completed: "completed"
+        confirm: "Подтвердить"
+  shared:
+    footer:
+      author: "Автор Антоний Халтурин. "
+      shop: "Магазин велотоваров."
+    nav:
+      main: "Главная"
+      categories: "Категории"
+      users: "Пользователи"
+      profile: "Профиль"
+      sign_out: "Выйти"
+      sign_in: "Зарегистрироваться"
+      sign_up: "Войти"
+  shopping_carts:
+    show:
+      cart_empty: "Ваша корзина покупок пуста!"
+      your_cart: "Ваша корзина покупок:"
+      product: "Товар"
+      price: "Цена"
+      delete: "Удалить"
+      total: "Итого:"
+      arrange: "Оформить"
+  users:
+    index:
+      sellers: "Продавцы"
+      seller_id: "ID продавца: %{id}"
+      buyers: "Покупатели"
+      buyer_id: "ID покупателя: %{id}"
+    show:
+      seller: "Продавец: %{first_name} %{last_name}"
+      seller_id: "ID продавца: %{id}"
+      salary: "Заработная плата"
+      save: "Сохранить"
+      dismiss: "Уволить"
+      buyer: "Покупать: %{first_name} %{last_name}"
+      email: "Email: %{email}"
+      phone: "Телефон: %{phone}"
+      delivery_address: "Адрес доставки: %{address}"
+      back: "Назад"
+  devise:
+    confirmations:
+      new:
+        resend: "Повторно отправить инструкции по подтверждению"
+        email: "Email"
+    passwords:
+      edit:
+        change: "Сменить пароль"
+        new: "Новый пароль"
+        char_min: "символов минимум"
+        confirm: "Подтвердить пароль"
+      new:
+        forgot: "Забыли ваш пароль?"
+        email: "Email"
+        send: "Пришлите мне инструкции по сбросу пароля"
+    registrations:
+      new:
+        email: "Email"
+        first_name: "Имя"
+        last_name: "Фамилия"
+        phone: "Телефон"
+        address: "Адрес"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        characters_minimum: "символов минимум"
+        sign_up: "Зарегистрироваться"
+      edit:
+        edit: "Редактировать"
+        email: "Email"
+        first_name: "Имя"
+        last_name: "Фамилия"
+        phone: "Телефон"
+        address: "Адрес"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        currently_waiting: "В настоящее время ожидает подтверждения для: "
+        leave_blank: "(оставьте поле пустым, если вы не хотите его изменять) "
+        characters_minimum: "символов минимум"
+        current_password: "Текущий пароль"
+        confirm_current_password: "нам нужен ваш текущий пароль для подтверждения внесенных изменений"
+        submit: "Обновить"
+        cancel: "Аннулировать мою учетную запись"
+        cancel_account: "Аннулируйте мою учетную запись"
+        sure: "Вы уверены?"
+        back: "Назад"
+    sessions:
+      new:
+        login: "Log in"
+        email: "Email"
+        enter_email: "Введите email"
+        password: "Пароль"
+        remember_me: "Запомнить меня"
+        enter: "Войти"
+    shared:
+      links:
+        login: "Зарегистрироваться"
+        sign_up: "Войти"
+        forgot: "Забыли ваш пароль?"
+        confirm_email: "Не получил инструкции по подтверждению?"
+        unlock_email: "Не получил инструкции по разблокировке?"
+        omniauthable: "Войти в систему с помощью %{omni}"
+    unlocks:
+      new:
+        resend: "Повторно отправьте инструкции по разблокировке"
+        email: "Email"

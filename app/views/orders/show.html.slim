@@ -1,17 +1,17 @@
 div class="row"
   div class="col"
-    h3= 'Заказ:'
+    h3= t('.order')
     div class="card bg-transparent"
       div class="card-body"
         - if @order.seller
-          h5 class="card-text"= "Seller: "
+          h5 class="card-text"= t('.seller')
           p class="card-text"= "#{@order.seller.first_name} #{@order.seller.last_name}"
         - @order.products.each do |product|
           h5 class="card-title"= product[0]
-          p class="card-text"= "Article: #{product[1]["article"]}"
-          p class="card-text"= "Description: #{product[1]["description"]}"
+          p class="card-text"= t('.article', article: product[1]["article"])
+          p class="card-text"= t('.description', description: product[1]["description"])
           p class="card-text"= "Price: #{product[1]["price"]}"
-        p class="card-text"= "Статус оплаты: #{@order.payment_status}"
-        p class="card-text"= "Total price: #{@order.total_price}"
+        p class="card-text"= t('.payment_status', status: @order.payment_status)
+        p class="card-text"= t('.total_price', price: @order.total_price)
 
-= link_to "Back", orders_path
+= link_to t('.back'), orders_path

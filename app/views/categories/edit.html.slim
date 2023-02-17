@@ -3,9 +3,9 @@
 
   = form_with model: @category, local: false do |f|
     p
-      = f.label :title
+      = f.label :title, t('.title')
       = f.text_field :title
     p
-      = f.submit 'Save'
+      = f.submit t('.save')
 
-= link_to 'Back', category_path(@category), class: "text-decoration-none"
+= link_to t('.back'), category_path(@category), class: "text-decoration-none"

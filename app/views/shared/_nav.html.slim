@@ -3,19 +3,19 @@ nav class="navbar navbar-dark bg-dark"
     div class='navbar-brand'
       = 'Veloshop'
     div class='navbar-text'
-      = link_to 'Main', products_path
+      = link_to t('.main'), products_path
       = ' | '
       - if user_signed_in?
         - if can? :read, Category
-          = link_to 'Categories', categories_path
+          = link_to t('.categories'), categories_path
           = ' | '
         - if can? :update_salary, User
-          = link_to 'Users', users_path
+          = link_to t('.users'), users_path
           = ' | '
-        = link_to 'Profile', profile_path(current_user)
+        = link_to t('.profile'), profile_path(current_user)
         = ' | '
-        = link_to 'Sign out', destroy_user_session_path, method: :delete
+        = link_to t('.sign_out'), destroy_user_session_path, method: :delete
       - else
-        = link_to 'Sign in', new_user_session_path
+        = link_to t('.sign_in'), new_user_session_path
         = ' | '
-        = link_to 'Sign up', new_user_registration_path
+        = link_to t('.sign_up'), new_user_registration_path

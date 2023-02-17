@@ -3,19 +3,19 @@ div class="card bg-transparent"
     - if can? :update, @product
       = form_with model: @product do |f|
         p
-          = f.label :title
+          = f.label :title, t('.title')
           = f.text_field :title
         p
-          = f.label :article
+          = f.label :article, t('.article')
           = f.text_field :article
         p
-          = f.label :description
+          = f.label :description, t('.description')
           = f.text_area :description, size: "40x5"
         p
-          = f.label :price
+          = f.label :price, t('.price')
           = f.text_field :price
         p
-          = f.submit "Edit"
+          = f.submit t('.edit')
 
       p
-        = link_to 'Back', products_path, class: "text-dark text-decoration-none"
+        = link_to t('.back'), products_path, class: "text-dark text-decoration-none"

@@ -1,7 +1,7 @@
 - if can? :create, Product
-  p= link_to 'Add product', new_product_path, class: "text-decoration-none"
+  p= link_to t('.add_product'), new_product_path, class: "text-decoration-none"
 
-h3= "Products"
+h3= t('.products')
 .products
   table class='table'
     tb

@@ -1,8 +1,8 @@
-h3= "Оформление заказа  :"
+h3= t('.making')
 table class="table"
   tr
-    th= 'Product'
-    th= 'Price'
+    th= t('.product')
+    th= t('.price')
     th=
   tb
     - @shop_cart.products.each do |product|
@@ -11,14 +11,14 @@ table class="table"
         td= product.price
     tr
       td
-        h6= "Итого:"
+        h6= t('.total')
       td
         h6= @shop_cart.total_price
       td=
 - if can? :create, Order
     = form_with model: [:buyer, @order] do |f|
       p
-        = f.label :payment_type, 'Тип оплаты '
-        = f.select :payment_type, ['online', 'cash']
+        = f.label :payment_type, t('.type')
+        = f.select :payment_type, [t('.online'), t('.cash')]
       p
-        = f.submit 'Оформить', class: 'btn-success'
+        = f.submit t('.arrange'), class: 'btn-success'
