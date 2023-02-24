@@ -1,4 +1,4 @@
-#Развернуть в Docker
+# Развернуть в Docker
 
 * docker-compose build
 * docker-compose run web rails db:create
