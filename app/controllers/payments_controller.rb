@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PaymentsController < ApplicationController
   before_action :authenticate_user!
   before_action :bank_account, only: :payment
@@ -8,10 +10,10 @@ class PaymentsController < ApplicationController
       @bank_account.save
       order.update(payment_status: true)
       redirect_to orders_path
-      flash[:notice] = "The order has been successfully paid for!"
+      flash[:notice] = 'The order has been successfully paid for!'
     else
       redirect_to edit_bank_account_path(@bank_account)
-      flash[:alert] = "Insufficient funds in your account!"
+      flash[:alert] = 'Insufficient funds in your account!'
     end
   end
 

@@ -2,10 +2,10 @@
 	= render 'shared/errors', resource: @category
 
 	= form_with model: @category, local: false do |f|
-		p
-			= f.label :title, t('.title')
-			= f.text_field :title
-		p
-			= f.submit t('.create')
+		p= f.label :title, t('.title')
+		p= f.text_field :title
+		p= f.label :url_name
+		p= f.text_field :url_name
+		p= f.submit t('.create')
 
 = link_to t('.back'), categories_path, class: "text-dark text-decoration-none"

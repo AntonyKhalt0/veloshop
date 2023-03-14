@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BankAccountsController < ApplicationController
   before_action :authenticate_user!
   before_action :get_bank_account, only: %i[edit update]
@@ -21,5 +23,4 @@ class BankAccountsController < ApplicationController
   def get_bank_account
     @bank_account = BankAccount.find(params[:id])
   end
-
 end

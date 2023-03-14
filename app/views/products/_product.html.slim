@@ -1,17 +1,26 @@
 div class="card mb-3 border-primary bg-transparent" style="max-width: 640px;"
   div class="row g-0 align-items-center"
-    div class="col-md-4"
+    div class="col-4"
       div class="text-center"
         - if product.images.any?
           = image_tag(product.images[0], size: 120)
         - else
           = t('.empty_image')
-    div class="col-md-8"
+    div class="col-8"
       div class="card-body"
         h5 class="card-title"= link_to product.title, product_path(product), class: "text-dark text-decoration-none"
         p class="card-text"= t('.price', price: product.price)
-        - if current_user && current_user.buyer?
-          div class="col-sm-4"= link_to t('.buy'), add_product_shopping_cart_path(product), method: :patch, class: "text-success"
+        p class="card-text"= t('.instock', count: product.count)
+        - if current_user&.buyer? && product.count.positive?
+          div class="col-4"
+            = form_with url: add_product_shopping_cart_path(current_user.shopping_cart), method: :patch do |f|
+              p
+                = f.label :count
+                = f.number_field :count, in: 1..product.count, step: 1
+                = f.hidden_field :product_id, value: product.id
+              p
+                = f.button t('.buy'), class: "btn btn-success"
         - if !current_user
-          div class="col-sm-4"= link_to t('.buy'), new_user_session_path, method: :get, class: "text-success"
-
+          div class="col-4"= link_to t('.buy'), new_user_session_path, method: :get, class: "text-success"
+        - if current_user&.seller?
+          div class="col-4"= link_to "+", update_count_product_path(product), method: :patch, class: "text-primary"

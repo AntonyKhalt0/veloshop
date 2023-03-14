@@ -59,6 +59,7 @@ ru:
       empty_image: "Нет изображения"
       price: "Цена: %{price}"
       buy: "Купить"
+      instock: "В наличии: %{count}"
     edit:
       title: "Название"
       article: "Артикул"
@@ -117,18 +118,20 @@ ru:
       shop: "Магазин велотоваров."
     nav:
       main: "Главная"
+      about: "О нас"
       categories: "Категории"
       users: "Пользователи"
       profile: "Профиль"
       sign_out: "Выйти"
-      sign_in: "Зарегистрироваться"
-      sign_up: "Войти"
+      sign_in: "Войти"
+      sign_up: "Зарегистрироваться"
   shopping_carts:
     show:
       cart_empty: "Ваша корзина покупок пуста!"
       your_cart: "Ваша корзина покупок:"
       product: "Товар"
       price: "Цена"
+      count: "Количество"
       delete: "Удалить"
       total: "Итого:"
       arrange: "Оформить"

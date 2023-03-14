@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Order < ApplicationRecord
   belongs_to :buyer, class_name: 'Buyer'
   belongs_to :seller, class_name: 'Seller', optional: true

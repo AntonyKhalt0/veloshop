@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_category, only: %i[show edit update destroy]
@@ -8,8 +10,7 @@ class CategoriesController < ApplicationController
     @categories = Category.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @category = Category.new
@@ -25,8 +26,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @category.update(category_params)
@@ -44,7 +44,7 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:title)
+    params.require(:category).permit(:title, :url_name)
   end
 
   def set_category

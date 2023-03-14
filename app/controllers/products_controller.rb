@@ -2,12 +2,12 @@
 
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :set_product, only: %i[show new edit update destroy]
+  before_action :set_product, only: %i[show new edit update destroy update_count]
 
   authorize_resource
 
   def index
-    @products = Product.with_attached_images.all.paginate(page: params[:page], per_page: 3)
+    @products = params['category'] ? products_with_category : all_products
   end
 
   def show
@@ -41,6 +41,11 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+  def update_count
+    @product.update(count: @product.count + 1)
+    redirect_to root_path
+  end
+
   private
 
   def product_params
@@ -49,5 +54,15 @@ class ProductsController < ApplicationController
 
   def set_product
     @product = params[:id] ? Product.with_attached_images.find(params[:id]) : Product.new
+  end
+
+  def products_with_category
+    Product.joins(:category).where('categories.url_name = ?', params['category']).with_attached_images.paginate(
+      page: params[:page], per_page: 3
+    )
+  end
+
+  def all_products
+    Product.with_attached_images.paginate(page: params[:page], per_page: 3)
   end
 end

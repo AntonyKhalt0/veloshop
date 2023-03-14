@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :get_order, only: :show

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable
@@ -7,22 +9,22 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
 
   def buyer?
-    self.is_a?(Buyer)
+    is_a?(Buyer)
   end
 
   def seller?
-    self.is_a?(Seller)
+    is_a?(Seller)
   end
 
   def director?
-    self.is_a?(Director)
+    is_a?(Director)
   end
 
   def creator?(resource)
-    resource.buyer.id == self.id
+    resource.buyer.id == id
   end
 
   def performer?(order)
-    order.seller.id == self.id
+    order.seller.id == id
   end
 end

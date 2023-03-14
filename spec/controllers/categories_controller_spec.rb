@@ -3,7 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
-  let(:seller) { create(:user, :seller) }
+  let(:seller) { create(:seller) }
+  let(:category) { create(:category) }
 
   before { login(seller) }
 
@@ -12,7 +13,7 @@ RSpec.describe CategoriesController, type: :controller do
 
     before { get :index }
 
-    it 'render products array' do
+    it 'populates an array of all categories' do
       expect(assigns(:categories)).to match_array(categories)
     end
 
@@ -22,8 +23,6 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:category) { create(:category) }
-
     before { get :show, params: { id: category } }
 
     it 'render show view' do
@@ -63,7 +62,7 @@ RSpec.describe CategoriesController, type: :controller do
       end
 
       it 'render new view' do
-        post :create, params: { category: attributes_for(:category, :invalid_category)}
+        post :create, params: { category: attributes_for(:category, :invalid_category) }
 
         expect(response).to render_template :new
       end

@@ -1,24 +1,28 @@
-class Seller::OrdersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :get_order, only: %i[edit update]
+# frozen_string_literal: true
 
-  authorize_resource
+module Seller
+  class OrdersController < ApplicationController
+    before_action :authenticate_user!
+    before_action :get_order, only: %i[edit update]
 
-  def update
-    if @order.update(seller_id: current_user.id, status: order_params[:status])
-      redirect_to orders_path
-    else
-      render "edit"
+    authorize_resource
+
+    def update
+      if @order.update(seller_id: current_user.id, status: order_params[:status])
+        redirect_to orders_path
+      else
+        render 'edit'
+      end
     end
-  end
 
-  private
+    private
 
-  def order_params
-    params.require(:order).permit(:status)
-  end
+    def order_params
+      params.require(:order).permit(:status)
+    end
 
-  def get_order
-    @order = Order.find(params[:id])
+    def get_order
+      @order = Order.find(params[:id])
+    end
   end
 end

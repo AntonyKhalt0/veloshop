@@ -1,10 +1,19 @@
-- if can? :create, Product
-  p= link_to t('.add_product'), new_product_path, class: "text-decoration-none"
-
-h3= t('.products')
-.products
-  table class='table'
-    tb
-      = render @products
-  div class="digg_pagination bg-transparent"
-    p= will_paginate @products
+div class="row"
+  div class="col-2"
+    table class="table table-dark table-hover"
+      tb
+        - Category.all.each do |category|
+          tr class="text-center"
+            td= link_to category.title, "/#{category.url_name}/products", class: "text-light text-decoration-none"
+  div class="col-10"
+    p
+    h2 class="text-start"= t('.products')
+    .products
+      table class="table"
+        - if can? :create, Product
+          tb
+            p= link_to t('.add_product'), new_product_path, class: "text-decoration-none"
+        tb
+          = render @products
+      div class="digg_pagination bg-transparent"
+        p= will_paginate @products

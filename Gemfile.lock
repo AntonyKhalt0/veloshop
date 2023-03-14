@@ -374,7 +374,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk-s3
   bootsnap (>= 1.4.2)
-  bootstrap (~> 5.0.1)
+  bootstrap
   byebug
   cancancan
   capybara (>= 2.15)

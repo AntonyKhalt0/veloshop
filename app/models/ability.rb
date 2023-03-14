@@ -4,7 +4,6 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-
     if user
       if user.buyer?
         buyer_abilities(user)
@@ -32,11 +31,12 @@ class Ability
     can :destroy, Order, { buyer_id: buyer.id }
   end
 
-  def seller_abilities(seller)
+  def seller_abilities(_seller)
     guest_abilities
     can :read, [Category, Order]
     can %i[create update destroy], [Product, Category]
     can :update, Order
+    can :update_count, Product
   end
 
   def director_abilities(user)

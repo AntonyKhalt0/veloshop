@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2022_11_16_111136) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title", null: false
+    t.string "url_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -70,17 +71,21 @@ ActiveRecord::Schema.define(version: 2022_11_16_111136) do
     t.integer "article", null: false
     t.string "description", null: false
     t.float "price", null: false
+    t.integer "count", default: 1
     t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
-  create_table "products_shopping_carts", force: :cascade do |t|
+  create_table "shopping_cart_products", force: :cascade do |t|
     t.bigint "shopping_cart_id"
     t.bigint "product_id"
-    t.index ["product_id"], name: "index_products_shopping_carts_on_product_id"
-    t.index ["shopping_cart_id"], name: "index_products_shopping_carts_on_shopping_cart_id"
+    t.integer "count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_shopping_cart_products_on_product_id"
+    t.index ["shopping_cart_id"], name: "index_shopping_cart_products_on_shopping_cart_id"
   end
 
   create_table "shopping_carts", force: :cascade do |t|

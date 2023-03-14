@@ -5,6 +5,8 @@ nav class="navbar navbar-dark bg-dark"
     div class='navbar-text'
       = link_to t('.main'), products_path
       = ' | '
+      = link_to t('.about'), about_path
+      = ' | '
       - if user_signed_in?
         - if can? :read, Category
           = link_to t('.categories'), categories_path

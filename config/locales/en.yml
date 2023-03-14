@@ -59,6 +59,7 @@ en:
       empty_image: "Empty image"
       price: "Price: %{price}"
       buy: "Buy"
+      instock: "In stock: %{count}"
     edit:
       title: "Title"
       article: "Article"
@@ -117,6 +118,7 @@ en:
       shop: "Bicycle supplies store"
     nav:
       main: "Main"
+      about: "About"
       categories: "Categories"
       users: "Users"
       profile: "Profile"
@@ -129,6 +131,7 @@ en:
       your_cart: "Your shopping cart:"
       product: "Product"
       price: "Price"
+      count: "Count"
       delete: "Delete"
       total: "Total:"
       arrange: "Arrange"

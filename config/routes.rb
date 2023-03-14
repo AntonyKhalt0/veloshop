@@ -22,9 +22,13 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/about', to: "about#index"
   resources :bank_accounts, only: %i[edit update]
   resources :profiles, only: %i[show]
-  resources :products
+  resources :products do
+    patch :update_count, on: :member
+  end
+  get '/:category/products', to: 'products#index'
   resources :categories
   resources :users, only: %i[index show edit destroy] do
     patch :update_salary, on: :member
