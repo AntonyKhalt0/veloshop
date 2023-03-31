@@ -13,7 +13,7 @@ div class="row"
           p class="card-text"= t('.seller', seller: @order.seller.first_name)
 
 - if can? :update, @order
-  = form_with model: [:seller, @order] do |f|
+  = form_with model: [:sellers, @order] do |f|
     p
       = f.label :status, t('.order_status')
       = f.select :status, [t('.exec'), t('.completed')]

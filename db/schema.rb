@@ -73,9 +73,11 @@ ActiveRecord::Schema.define(version: 2022_11_16_111136) do
     t.float "price", null: false
     t.integer "count", default: 1
     t.bigint "category_id", null: false
+    t.bigint "subscribers_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["subscribers_id"], name: "index_products_on_subscribers_id"
   end
 
   create_table "shopping_cart_products", force: :cascade do |t|
@@ -123,5 +125,6 @@ ActiveRecord::Schema.define(version: 2022_11_16_111136) do
   add_foreign_key "orders", "users", column: "buyer_id"
   add_foreign_key "orders", "users", column: "seller_id"
   add_foreign_key "products", "categories"
+  add_foreign_key "products", "users", column: "subscribers_id"
   add_foreign_key "users", "shopping_carts"
 end

@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     @sellers = Seller.all.paginate(page: params[:page], per_page: 3)
   end
 
+  def show
+    @completed_orders = @user.execute_orders.where(status: "completed") if @user.seller?
+  end
+
   def update_salary
     @user.salary = user_params[:salary]
 

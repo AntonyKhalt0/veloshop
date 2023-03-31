@@ -9,6 +9,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.float :price, null: false
       t.integer :count, default: 1
       t.references :category, foreign_key: true, null: false
+      t.references :subscribers, foreign_key: { to_table: :users }
 
       t.timestamps
     end

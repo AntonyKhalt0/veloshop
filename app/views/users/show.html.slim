@@ -4,6 +4,7 @@ div class="card mb-3 bg-transparent" style="max-width: 640px;"
       h5 class="card-title"= t('.seller', first_name: @user.first_name, last_name: @user.last_name)
       p class="card-text"= t('.seller_id', id: @user.id)
       p class="card-text"= "#{t('.salary')}: #{@user.salary}"
+      p class="card-text"= "Количество выполненных заказов: #{@completed_orders.count}"
       p class="card-text"
         = form_with(model: @user, url: update_salary_user_path, method: :patch) do |f|
           p

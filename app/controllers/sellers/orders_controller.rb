@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Seller
+module Sellers
   class OrdersController < ApplicationController
     before_action :authenticate_user!
     before_action :get_order, only: %i[edit update]

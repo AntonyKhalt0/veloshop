@@ -12,15 +12,16 @@ class ShoppingCartsController < ApplicationController
   def add_product
     get_product
     shopping_cart_product ? change_product_count : add_product_in_shopping_cart
-    @product.update(count: @product.count - params[:count].to_i)
+    @product.update(count: @product.count - product_count)
     redirect_to @shop_cart
     flash[:notice] = 'Товар был успешно добавлен в корзину!'
   end
 
   def delete_product
     get_product
-    @shop_cart.products.delete(@product)
-    @product.update(count: @product.count + 1)
+    removing_product_from_shop_cart
+    #@shop_cart.products.delete(@product)
+    @product.update(count: @product.count + product_count)
     redirect_to @shop_cart
     flash[:notice] = 'Товар был успешно удален из корзины!'
   end
@@ -44,6 +45,16 @@ class ShoppingCartsController < ApplicationController
   end
 
   def change_product_count
-    shopping_cart_product.update(count: shopping_cart_product.count + params[:count].to_i)
+    shopping_cart_product.update(count: shopping_cart_product.count + product_count)
+  end
+
+  def removing_product_from_shop_cart
+    return shopping_cart_product.destroy if shopping_cart_product.count == product_count
+
+    shopping_cart_product.update(count: shopping_cart_product.count - product_count)
+  end
+
+  def product_count
+    params[:count].to_i
   end
 end

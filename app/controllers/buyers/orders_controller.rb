@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Buyer
+module Buyers
   class OrdersController < ApplicationController
     before_action :authenticate_user!
     before_action :get_order, only: :destroy
@@ -53,8 +53,12 @@ module Buyer
 
     def get_products
       @products = {}
-      get_shop_cart.products.each do |product|
-        @products[product.title] = { article: product.article, description: product.description, price: product.price }
+      shop_cart_products = get_shop_cart.shopping_cart_products.eager_load(:product)
+      shop_cart_products.each do |scp|
+        @products[scp.product.title] = { article: scp.product.article,
+                                         description: scp.product.description,
+                                         count: scp.count,
+                                         price: scp.product.price * scp.count }
       end
       @products
     end

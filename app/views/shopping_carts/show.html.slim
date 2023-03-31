@@ -13,8 +13,14 @@
         tr
           td= product.title
           td= product.price
-          td= @shop_cart.shopping_cart_products.find_by(product: product).count
-          td= link_to t('.delete'), delete_product_shopping_cart_path(product), method: :patch, class: "text-danger text-decoration-none"
+          td= shop_cart_product_count(@shop_cart, product)
+          td
+            = form_with url: delete_product_shopping_cart_path(@shop_cart), method: :patch do |f|
+              p
+                = f.number_field :count, in: 1..shop_cart_product_count(@shop_cart, product), step: 1, size: "1"
+                = f.hidden_field :product_id, value: product.id
+              p
+                = f.button t('.delete'), class: "btn btn-danger"
       tr
         td
           h6= t('.total')
@@ -22,5 +28,5 @@
           h6= @shop_cart.total_price
         td=
   - if can? :create, Order
-      = link_to t('.arrange'), new_buyer_order_path
+      = link_to t('.arrange'), new_buyers_order_path
 

@@ -5,11 +5,11 @@ Rails.application.routes.draw do
 
   root 'products#index'
 
-  namespace :seller do
+  namespace :sellers do
     resources :orders, only: %i[edit update], shallow: true
   end
 
-  namespace :buyer do
+  namespace :buyers do
     resources :orders, only: %i[new create destroy], shallow: true
   end
 
@@ -26,7 +26,10 @@ Rails.application.routes.draw do
   resources :bank_accounts, only: %i[edit update]
   resources :profiles, only: %i[show]
   resources :products do
-    patch :update_count, on: :member
+    member do
+      patch :update_count
+      patch :add_subscriber
+    end
   end
   get '/:category/products', to: 'products#index'
   resources :categories

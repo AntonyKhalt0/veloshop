@@ -43,6 +43,13 @@ class ProductsController < ApplicationController
 
   def update_count
     @product.update(count: @product.count + 1)
+    ProductNotifierJob.new.perform(@product) if @product.count == 1
+    redirect_to root_path
+  end
+
+  def add_subscriber
+    @product.subscribers << current_user
+    @product.save
     redirect_to root_path
   end
 

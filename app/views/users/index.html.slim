@@ -7,6 +7,7 @@
           div class="card-body"
             h5 class="card-title"= link_to "#{seller.first_name} #{seller.last_name}", user_path(seller), class: 'text-dark text-decoration-none'
             p class="card-text"= t('.seller_id', id: seller.id)
+            p class="card-text"= "Количество выполненных заказов: #{seller.execute_orders.where(status: "completed").count}"
         div class="digg_pagination"
           p= will_paginate @sellers
     div class="col-md-6"
