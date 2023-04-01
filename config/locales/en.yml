@@ -83,6 +83,7 @@ en:
       article: "Article: %{article}"
       description: "Description: %{description}"
       price: "Price: %{price}"
+      instock: "In stock: %{count}"
       buy: "Buy"
       edit: "Edit"
       delete: "Delete"

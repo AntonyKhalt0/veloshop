@@ -83,6 +83,7 @@ ru:
       article: "Артикул: %{article}"
       description: "Описание: %{description}"
       price: "Цена: %{price}"
+      instock: "В наличии: %{count}"
       buy: "Купить"
       edit: "Редактировать"
       delete: "Удалить"
