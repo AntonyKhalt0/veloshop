@@ -1,9 +1,13 @@
-- if can? :read, Category
-	.categories
-		table class='table'
-			tr
-				th= t('.title')
-			tb
-				= render @categories
+div class="row"
+	div class="col-1"
+	div class="col-11"
+		- if can? :read, Category
+			.categories
+				table class='table'
+					tr
+						th= t('.title')
+					tb
+						= render @categories
 
-	= link_to t('.add_category'), new_category_path, class: "text-decoration-none"
+			= link_to t('.add_category'), new_category_path, class: "text-decoration-none"
+			p

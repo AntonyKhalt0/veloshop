@@ -20,4 +20,5 @@ div class="card bg-transparent"
       - if can? :read, Order
         div class="col-sm-2"= button_to orders_path, method: :get, class: "btn btn-primary" do
           = t('.orders')
-p= link_to t('.back'), root_path
+    p
+    p= link_to t('.back'), root_path, class: "text-dark text-decoration-none"

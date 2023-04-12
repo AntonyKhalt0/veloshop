@@ -2,7 +2,7 @@
 
 class Product < ApplicationRecord
   belongs_to :category
-  has_many :subscribers, class_name: "Buyer"
+  has_and_belongs_to_many :subscribers, class_name: "Buyer"
 
   has_many_attached :images
 

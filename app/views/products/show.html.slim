@@ -1,36 +1,37 @@
-div class="card mb-3 bg-transparent" style="max-width: 640px;"
-  div class="row g-0 align-items-center"
-    div class="col-md-4"
-      div class="text-center"
-        - if @images.any?
-          = image_tag(@product.images[0], size: 120)
-        - else
-          = t('.empty_image')
-        div class="digg_pagination"
-          p= will_paginate @images
-    div class="col-md-8"
-      div class="card-body"
-        h5 class="card-title"= @product.title
-        p class="card-text"= t('.article', article: @product.article)
-        p class="card-text"= t('.description', description: @product.description)
-        p class="card-text"= t('.price', price: @product.price)
-        p class="card-text"= t('.instock', count: @product.count)
-        div class="row"
-        - if current_user&.buyer? && @product.count.positive?
-          div class="col-sm-4"
-            = form_with url: add_product_shopping_cart_path(current_user.shopping_cart), method: :patch do |f|
-              p
-                = f.label :count
-                = f.number_field :count, in: 1..product.count, step: 1, size: "1"
-                = f.hidden_field :product_id, value: @product.id
-              p
-                = f.button t('.buy'), class: "btn btn-success"
-        - if current_user&.buyer? && @product.count.negative? || @product.count.zero?
-          div class="col-4"= link_to "Сообщить о поступлении", add_subscriber_product_path(@product), method: :patch
-        - if !current_user
-          div class="col-sm-4"= button_to t('.buy'), new_user_session_path, method: :get, class: "btn btn-success"
-        - if can? :update, @product
-          div class="col-sm-4"= button_to t('.edit'), edit_product_path(@product), class: "btn btn-primary"
-        - if can? :destroy, @product
-          div class="col-sm-4"= button_to t('.delete'), product_path(@product), method: :delete, class: "btn btn-danger"
-        p= link_to t('.back'), products_path, class: "text-dark text-decoration-none"
+p
+div class="row g-0 align-items-center"
+  div class="col-md-4"
+    div class="text-center"
+      - if @images.any?
+        = image_tag(@product.images[0], size: 120)
+      - else
+        = t('.empty_image')
+      div class="digg_pagination"
+        p= will_paginate @images
+  div class="col-md-8"
+    div class="card-body"
+      h5 class="card-title"= @product.title
+      p class="card-text"= t('.article', article: @product.article)
+      p class="card-text"= t('.description', description: @product.description)
+      p class="card-text"= t('.price', price: @product.price)
+      p class="card-text"= t('.instock', count: @product.count)
+      div class="row"
+      - if current_user&.buyer? && @product.count.positive?
+        div class="col-sm-4"
+          = form_with url: add_product_shopping_cart_path(current_user.shopping_cart), method: :patch do |f|
+            p
+              = f.label :count, t('.count')
+              = " "
+              = f.number_field :count, in: 1..@product.count, step: 1, size: "1"
+              = f.hidden_field :product_id, value: @product.id
+            p
+              = f.button t('.buy'), class: "btn btn-success"
+      - if current_user&.buyer? && @product.count.negative? || @product.count.zero?
+        div class="col-4"= link_to "Сообщить о поступлении", add_subscriber_product_path(@product), method: :patch
+      - if !current_user
+        div class="col-sm-4"= button_to t('.buy'), new_user_session_path, method: :get, class: "btn btn-success"
+      - if can? :update, @product
+        div class="col-sm-4"= button_to t('.edit'), edit_product_path(@product), class: "btn btn-primary"
+      - if can? :destroy, @product
+        div class="col-sm-4"= button_to t('.delete'), product_path(@product), method: :delete, class: "btn btn-danger"
+      p= link_to t('.back'), products_path, class: "text-dark text-decoration-none"

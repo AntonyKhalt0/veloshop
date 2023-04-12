@@ -18,6 +18,7 @@ ru:
         arrange: "Оформить"
   categories:
     edit:
+      category_edit: "Редактировать категорию %{category_title}"
       title: "Название категории"
       save: "Сохранить"
       back: "Назад"
@@ -25,6 +26,7 @@ ru:
       title: "Название категории"
       add_category: "Добавить категорию"
     new:
+      category_create: "Создать категорию"
       title: "Название категории"
       create: "Создать"
       back: "Назад"
@@ -60,6 +62,7 @@ ru:
       price: "Цена: %{price}"
       buy: "Купить"
       instock: "В наличии: %{count}"
+      count: "Количество "
     edit:
       title: "Название"
       article: "Артикул"
@@ -84,6 +87,7 @@ ru:
       description: "Описание: %{description}"
       price: "Цена: %{price}"
       instock: "В наличии: %{count}"
+      count: "Количество "
       buy: "Купить"
       edit: "Редактировать"
       delete: "Удалить"

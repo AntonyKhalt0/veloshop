@@ -7,13 +7,29 @@ div class="row"
             td= link_to category.title, "/#{category.url_name}/products", class: "text-light text-decoration-none"
   div class="col-10"
     p
-    h2 class="text-start"= t('.products')
-    .products
-      table class="table"
-        - if can? :create, Product
-          tb
-            p= link_to t('.add_product'), new_product_path, class: "text-decoration-none"
-        tb
-          = render @products
-      div class="digg_pagination bg-transparent"
-        p= will_paginate @products
+    table
+      thead
+        tr
+          div class="row"
+            div class="col-4"
+              h2 class="text-start"= t('.products')
+            div class="col-1"
+            div class="col-4"
+              = form_with url: search_path, class: 'search-form' do |f|
+                div class='input-group'
+                  = f.text_field "search_data", class: 'form-control'
+                  = f.submit 'Search'
+            div class="col-3"
+      tbody
+        tr
+          .products
+            table class="table"
+              tb
+                - if can? :create, Product
+                  p= link_to t('.add_product'), new_product_path, class: "text-decoration-none"
+                - else
+                  p= link_to "В наличии", sort_by_availability_path
+              tb
+                = render @products
+            div class="digg_pagination bg-transparent"
+              p= will_paginate @products

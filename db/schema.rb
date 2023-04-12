@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_16_111136) do
+ActiveRecord::Schema.define(version: 2023_04_11_130945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,13 @@ ActiveRecord::Schema.define(version: 2022_11_16_111136) do
     t.index ["subscribers_id"], name: "index_products_on_subscribers_id"
   end
 
+  create_table "products_users", force: :cascade do |t|
+    t.bigint "buyer_id"
+    t.bigint "product_id"
+    t.index ["buyer_id"], name: "index_products_users_on_buyer_id"
+    t.index ["product_id"], name: "index_products_users_on_product_id"
+  end
+
   create_table "shopping_cart_products", force: :cascade do |t|
     t.bigint "shopping_cart_id"
     t.bigint "product_id"
@@ -126,5 +133,7 @@ ActiveRecord::Schema.define(version: 2022_11_16_111136) do
   add_foreign_key "orders", "users", column: "seller_id"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "users", column: "subscribers_id"
+  add_foreign_key "products_users", "products"
+  add_foreign_key "products_users", "users", column: "buyer_id"
   add_foreign_key "users", "shopping_carts"
 end

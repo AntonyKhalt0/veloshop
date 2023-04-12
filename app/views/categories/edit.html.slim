@@ -1,12 +1,19 @@
-- if can? :update, @category
-  = render 'shared/errors', resource: @category
+div class="row"
+  div class="col-1"
+  div class="col-11"
+    p
+    h3= t('.category_edit', category_title: @category.title)
+    - if can? :update, @category
+      = render 'shared/errors', resource: @category
 
-  = form_with model: @category, local: false do |f|
-    p= f.label :title, t('.title')
-    p= f.text_field :title
-    p= f.label :url_name
-    p= f.text_field :url_name
-    p= f.submit t('.create')
+      = form_with model: @category, local: false do |f|
+        p
+          = f.label :title, t('.title')
+          = f.text_field :title
+        p
+          = f.label :url_name
+          = f.text_field :url_name
+        p= f.submit t('.save')
 
-
-= link_to t('.back'), category_path(@category), class: "text-decoration-none"
+    = link_to t('.back'), category_path(@category), class: "text-decoration-none"
+    p

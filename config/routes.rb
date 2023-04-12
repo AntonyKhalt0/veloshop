@@ -22,9 +22,12 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'search', action: :search, controller: 'search'
+
   get '/about', to: "about#index"
   resources :bank_accounts, only: %i[edit update]
   resources :profiles, only: %i[show]
+  get '/sort_by_availability', to: 'products#sort_by_availability'
   resources :products do
     member do
       patch :update_count

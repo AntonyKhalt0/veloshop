@@ -2,12 +2,17 @@
 
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :set_product, only: %i[show new edit update destroy update_count]
+  before_action :get_product, only: %i[show new edit update destroy update_count add_subscriber]
 
   authorize_resource
 
   def index
     @products = params['category'] ? products_with_category : all_products
+  end
+
+  def sort_by_availability
+    @products = params['category'] ? products_with_category.where("count > ?", 0) : all_products.where("count > ?", 0)
+    render :index
   end
 
   def show
@@ -59,7 +64,7 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:title, :article, :description, :price, :category_id, images: [])
   end
 
-  def set_product
+  def get_product
     @product = params[:id] ? Product.with_attached_images.find(params[:id]) : Product.new
   end
 
