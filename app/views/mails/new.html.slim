@@ -1,0 +1,7 @@
+p
+div class="row"
+  div class="col-6 offset-1"
+    = form_with url: send_mail_path do |f|
+      h3= f.label :body, "Написать в поддержку"
+      p= f.text_area :body
+      p= f.submit "Отправить"

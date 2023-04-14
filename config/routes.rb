@@ -24,7 +24,8 @@ Rails.application.routes.draw do
   end
 
   post 'search', action: :search, controller: 'search'
-
+  get '/mail', to: "mails#new"
+  post '/send_mail', to: "mails#send_mail"
   get '/about', to: "about#index"
   resources :bank_accounts, only: %i[edit update]
   resources :profiles, only: %i[show]

@@ -19,7 +19,13 @@
       <div class="card">
         <%= yield %>
       </div>
-    </div>
-
+    </div>>
+    <div style="position: relative;">
+        <div style="position: absolute; top: -60px; right: 30px;">
+          <div class="card">
+            <a href="/mail"><%= octicon "mail", :height => 32,  :class => "right left", :"aria-label" => "hi" %></a>
+          </div>
+        </div>
+      </div>
   </body>
 </html>
