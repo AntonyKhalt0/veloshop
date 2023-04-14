@@ -16,4 +16,5 @@
 //= require jquery3
 //= require action_cable
 //= require cocoon
+//= require bootstrap
 //= require_tree .

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :buyers do
     resources :orders, only: %i[new create destroy], shallow: true
+    resources :feedbacks, only: %i[index new create destroy], shallow: true
   end
 
   resources :orders, only: %i[index show]

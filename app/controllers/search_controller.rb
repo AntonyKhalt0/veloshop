@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
   def search
     @products = Product.search(params[:search_data])
-    render 'products/index'
+
+    render :result
   end
 end

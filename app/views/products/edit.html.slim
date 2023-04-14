@@ -1,21 +1,22 @@
-div class="card bg-transparent"
-  div class="card-body"
-    - if can? :update, @product
-      = form_with model: @product do |f|
-        p
-          = f.label :title, t('.title')
-          = f.text_field :title
-        p
-          = f.label :article, t('.article')
-          = f.text_field :article
-        p
-          = f.label :description, t('.description')
-          = f.text_area :description, size: "40x5"
-        p
-          = f.label :price, t('.price')
-          = f.text_field :price
-        p
-          = f.submit t('.edit')
+div class="shadow p-3 mb-5 bg-body-tertiary rounded"
+  div class="card bg-transparent"
+    div class="card-body"
+      - if can? :update, @product
+        = form_with model: @product do |f|
+          p
+            = f.label :title, t('.title')
+            = f.text_field :title
+          p
+            = f.label :article, t('.article')
+            = f.text_field :article
+          p
+            = f.label :description, t('.description')
+            = f.text_area :description, size: "40x5"
+          p
+            = f.label :price, t('.price')
+            = f.text_field :price
+          p
+            = f.submit t('.edit')
 
-      p
-        = link_to t('.back'), products_path, class: "text-dark text-decoration-none"
+        p
+          = link_to t('.back'), products_path, class: "text-dark text-decoration-none"

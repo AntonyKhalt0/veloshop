@@ -46,7 +46,7 @@ ru:
       delete: "Удалить"
       executable_orders: "Выполняемые заказы:"
       complete: "Завершить"
-      comlpeted_orders: "Завершенные заказы:"
+      completed_orders: "Завершенные заказы:"
     show:
       order: "Заказ:"
       seller: "Продавец:"

@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
 
   def show
     @images = @product.images.paginate(page: params[:page], per_page: 1)
+    @feedbacks = @product.feedbacks.order(created_at: :desc).paginate(page: params[:page], per_page: 3)
   end
 
   def new; end

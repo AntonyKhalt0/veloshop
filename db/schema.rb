@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_11_130945) do
+ActiveRecord::Schema.define(version: 2023_04_13_085623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,17 @@ ActiveRecord::Schema.define(version: 2023_04_11_130945) do
     t.string "url_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.bigint "buyer_id"
+    t.bigint "product_id"
+    t.string "body", null: false
+    t.integer "score", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["buyer_id"], name: "index_feedbacks_on_buyer_id"
+    t.index ["product_id"], name: "index_feedbacks_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -128,6 +139,8 @@ ActiveRecord::Schema.define(version: 2023_04_11_130945) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "feedbacks", "products"
+  add_foreign_key "feedbacks", "users", column: "buyer_id"
   add_foreign_key "orders", "shopping_carts"
   add_foreign_key "orders", "users", column: "buyer_id"
   add_foreign_key "orders", "users", column: "seller_id"

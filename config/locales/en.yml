@@ -46,7 +46,7 @@ en:
       delete: "Delete"
       executable_orders: "Executable orders:"
       complete: "Complete"
-      comlpeted_orders: "Completed orders"
+      comlpeted_orders: "Completed orders:"
     show:
       order: "Order:"
       seller: "Seller:"
