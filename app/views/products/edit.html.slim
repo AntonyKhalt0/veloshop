@@ -4,8 +4,11 @@ div class="shadow p-3 mb-5 bg-body-tertiary rounded"
       - if can? :update, @product
         = form_with model: @product do |f|
           p
-            = f.label :title, t('.title')
-            = f.text_field :title
+            = f.label :brand, t('.brand')
+            = f.text_field :brand
+          p
+            = f.label :model, t('.model')
+            = f.text_field :model
           p
             = f.label :article, t('.article')
             = f.text_field :article
@@ -14,7 +17,19 @@ div class="shadow p-3 mb-5 bg-body-tertiary rounded"
             = f.text_area :description, size: "40x5"
           p
             = f.label :price, t('.price')
-            = f.text_field :price
+            = f.number_field :price
+          p
+            = f.label :product_type, t('.product_type')
+            = f.text_field :product_type
+          p
+            = f.label :color, t('.color')
+            = f.color_field :color
+          p
+            = f.label :size, t('.size')
+            = f.text_field :size
+          p
+            = f.label :material, t('.material')
+            = f.text_field :material
           p
             = f.submit t('.edit')
 

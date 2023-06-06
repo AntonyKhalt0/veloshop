@@ -25,7 +25,7 @@ class Ability
 
   def buyer_abilities(buyer)
     guest_abilities
-    can :read, [ShoppingCart, Order]
+    can :read, [ShoppingCart, Category, Order]
     can %i[add_product delete_product], ShoppingCart, { buyer_id: buyer.id }
     can :create, Order
     can :destroy, Order, { buyer_id: buyer.id }

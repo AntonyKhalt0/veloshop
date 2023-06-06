@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   post '/send_mail', to: "mails#send_mail"
   get '/about', to: "about#index"
   resources :bank_accounts, only: %i[edit update]
-  resources :profiles, only: %i[show]
+  resources :profiles, only: %i[show edit update]
   get '/sort_by_availability', to: 'products#sort_by_availability'
   resources :products do
     member do

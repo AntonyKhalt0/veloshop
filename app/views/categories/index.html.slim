@@ -1,13 +1,21 @@
-div class="row"
-	div class="col-1"
-	div class="col-11"
-		- if can? :read, Category
-			.categories
-				table class='table'
-					tr
-						th= t('.title')
-					tb
-						= render @categories
-
-			= link_to t('.add_category'), new_category_path, class: "text-decoration-none"
-			p
+div class="container"
+	h4= 'Категории товаров'
+	div class="row gx-7 gy-3"
+		- @categories.each do |category|
+			div class="col-3"
+				div class="card"
+					div class="row"
+						div class="col-4 align-items-start"
+							- if category.image.present?
+								= image_tag(category.image, size: 120)
+							- else
+								= "Нет изображения"
+						div class="col-8 text-center align-items-center"
+							p
+							h5 class="card-text"= link_to category.title,  controller: "products", action: "index", category: category.url_name
+							- if can? :edit, Category
+								p class="card-text"= link_to "Редактировать", category_path(category), class: "text-dark text-decoration-none"
+	p
+	- if can? :create, Category
+		= link_to t('.add_category'), new_category_path, class: "text-decoration-none"
+		p

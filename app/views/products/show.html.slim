@@ -11,13 +11,16 @@ div class="row g-0 align-items-center"
   div class="col-md-7"
     div class="row"
       div class="col-5"
-        h5= @product.title
+        h5= "#{@product.brand} #{@product.model}"
       div class="col-4"
         = @product.overall_rating
         svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16"
           path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"
     p= t('.article', article: @product.article)
     p= t('.description', description: @product.description)
+    p= "Тип: #{@product.product_type}"
+    p= "Размер: #{@product.size}"
+    p= "Материал: #{@product.material}"
     p= t('.price', price: @product.price)
     p= t('.instock', count: @product.count)
     div class="row"
@@ -37,19 +40,20 @@ div class="row g-0 align-items-center"
         - if @product.count.negative? || @product.count.zero?
           div class="col-4"= link_to "Сообщить о поступлении", add_subscriber_product_path(@product), method: :patch
           p
-      div class="row"
-        div class="col-6"
-          button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFeedback" aria-expanded="false" aria-controls="collapseFeedback"
-            = "Оставить отзыв"
-          p
-          div class="collapse" id="collapseFeedback"
-            div class="card card-body"
-              = form_with model: current_user.feedbacks.build, url: buyers_feedbacks_path, method: :post do |f|
-                p= f.text_field :body, placeholder: 'Отзыв...'
-                p
-                  = f.number_field :score, in: 1..5, step: 1
-                  = f.hidden_field :product_id, value: @product.id
-                p= f.submit "Оставить"
+      - if current_user&.buyer?
+        div class="row"
+          div class="col-6"
+            button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFeedback" aria-expanded="false" aria-controls="collapseFeedback"
+              = "Оставить отзыв"
+            p
+            div class="collapse" id="collapseFeedback"
+              div class="card card-body"
+                = form_with model: current_user.feedbacks.build, url: buyers_feedbacks_path, method: :post do |f|
+                  p= f.text_field :body, placeholder: 'Отзыв...'
+                  p
+                    = f.number_field :score, in: 1..5, step: 1
+                    = f.hidden_field :product_id, value: @product.id
+                  p= f.submit "Оставить"
       div class="row"
         h6= 'Отзывы о товаре:'
         div class="col-6"

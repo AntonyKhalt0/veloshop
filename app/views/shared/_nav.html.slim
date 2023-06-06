@@ -2,15 +2,14 @@ nav class="navbar navbar-dark bg-dark"
   div class='container-fluid'
     div class='navbar-brand'
       = 'Veloshop'
+    div class="navbar-text"
+      = link_to "Категории", categories_path
     div class='navbar-text'
       = link_to t('.main'), products_path
       = ' | '
       = link_to t('.about'), about_path
       = ' | '
       - if user_signed_in?
-        - if can? :read, Category
-          = link_to t('.categories'), categories_path
-          = ' | '
         - if can? :update_salary, User
           = link_to t('.users'), users_path
           = ' | '

@@ -2,12 +2,12 @@
 
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_category, only: %i[show edit update destroy]
+  before_action :get_category, only: %i[show edit update destroy]
 
   authorize_resource
 
   def index
-    @categories = Category.all
+    @categories = Category.with_attached_image.all
   end
 
   def show; end
@@ -44,10 +44,10 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:title, :url_name)
+    params.require(:category).permit(:title, :url_name, :image)
   end
 
-  def set_category
-    @category = Category.find(params[:id])
+  def get_category
+    @category = Category.with_attached_image.find(params[:id])
   end
 end

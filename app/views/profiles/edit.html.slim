@@ -1,0 +1,18 @@
+= form_with model: user, method: :patch, local: false do |f|
+  p
+    = f.label :first_name
+    = ' '
+    = f.text_field :first_name
+  p
+    = f.label :last_name
+    = ' '
+    = f.text_field :last_name
+  p
+    = f.label :phone
+    = ' '
+    = f.text_field :phone
+  p
+    = f.label :address
+    = ' '
+    = f.text_field :address
+  p= f.submit "Редактировать"

@@ -15,7 +15,10 @@ div class="row"
 					= f.label :url_name
 					= ' '
 					= f.text_field :url_name
-				p= f.submit t('.create')
+				p
+					= f.label :image, t('.image')
+					= f.file_field :image
+				p= f.submit "Создать"
 
 		= link_to t('.back'), categories_path, class: "text-dark text-decoration-none"
 		p
